@@ -1,0 +1,104 @@
+.social-slider-blog {
+    h2 {
+        display: inline-block;
+    }
+
+    .title {
+        margin-bottom:40px;
+    }
+
+    .slick-slider > div {
+        max-width:100%;
+    }
+    .slick-slide {
+        width:250px;
+    }
+    .social-icons-inline {
+        display: inline-block;
+        margin-left: 20px;
+    }
+
+    article {
+        padding: 20px;
+        background: white;
+        display: table!important;
+        height: 250px;
+        > div {
+            display: table-row;
+            width: 100%;
+            vertical-align: middle;
+        }
+    }
+
+    i {
+        margin-right:10px;
+    }
+    .content {
+        height: 80%;
+        span {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        a {
+            color: $red;
+        }
+    }
+    .date span {
+        font-size: 14px;
+    }
+    @extend %socialSliderBlogButtons;
+    article.instagram {
+        padding: 0;
+        background: none;
+        position: relative; 
+        .username {
+            display: block;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            z-index: 9999;
+            color: white;
+            a {
+                color:white;
+            }
+        }
+
+        i, a {
+            @extend %textShadow;
+        }
+        .content {
+            height: 100%;
+            position: absolute;
+            display: block;
+            top: 0;
+            left: 0;
+            background-position: 0;
+            background-size: cover;
+            img {
+                height: auto;
+                width: auto;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+    @include tablet {
+        .slick-slider {
+            > div {
+                margin: 0;
+            }
+        }
+        .slick-track {
+            padding: 0;
+        }
+    }
+    @include mobile {
+        .slick-slider > div {
+            width: 100%;
+        }
+        .slider-buttons {
+            bottom: -52px;
+        }
+    }
+}

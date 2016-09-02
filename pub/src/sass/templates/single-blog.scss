@@ -1,0 +1,30 @@
+@import '../includes';
+@import 'partials/bannerHeader';
+#single-blog-content {
+    margin-top: 60px;
+}
+
+aside {
+    span {
+        font-size: 14px;
+        color: $fontGrey;
+        display: block;
+    }
+    strong {
+        margin-top: 20px;
+        font-size: 14px;
+        color: $fontGrey;
+        display: block;
+    }
+}
+
+.sharing_buttons {
+    margin-top: 5px;
+    a {
+        font-size: 36px;
+        display: inline-block;
+        width: auto;
+        color: $red;
+    }
+}
+

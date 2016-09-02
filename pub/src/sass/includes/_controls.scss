@@ -1,0 +1,333 @@
+%input {
+    @include borderRadius(5px);
+    @include placeholder {
+        color: grey;
+    }
+    line-height:1.4em;
+    border:0;
+    outline:0;
+    &:focus {}
+}
+
+%btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-family: $metaOTBold;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    padding: 10px 20px;
+    border: none;
+    text-decoration: none;
+    background: $blue2;
+    color: white;
+    @include borderRadius(5px);
+    @include box-shadow(0, 2px, 5px, rgba(0, 0, 0, 0.2));
+    &:focus {
+        outline: 0;
+    }
+}
+
+%secondaryBtn {
+    background: $secondaryBlue;
+    color: white;
+    @extend %btn;
+}
+
+%primaryBtn {
+    background-color: $blue1;
+    color: white;
+    @extend %btn;
+}
+
+%actionBtn {
+    background-color: $red;
+    width: 100%;
+    @extend %btn;
+}
+
+%form-select {
+    background: $white;
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    border: 1px solid #cbcbcb;
+    margin-top: 25px;
+    border-radius: 3px;
+    @include transition(box-shadow, 0.2s);
+    @include box-shadow(0, 2px, 5px, rgba(0, 0, 0, 0.2));
+
+    @extend %kihe-caret-down;
+    &:before {
+        position: absolute;
+        top: 0;
+        right: 0px;
+        z-index: 1;
+        color: $white;
+        line-height: 40px;
+        font-size: 40px;
+        background: $blue2;
+        .ie & {
+            display: none;
+        }
+    }
+    &:disabled {
+        background: $grey;
+    }
+    &:focus {
+        outline: 0;
+    }
+}
+
+%blue-arrow-select {
+    position: relative;
+    width: auto;
+    display: inline-block;
+    margin: 0 5px 20px 5px;
+    select {
+        @extend %form-select;
+        margin: 0;
+        width: auto;
+        min-width: 300px;
+        &:disabled {
+            background: $selectDisabledGrey;
+        }
+    }
+    span.select-arrow {
+        content: '\e903';
+        font-family: 'kihe' !important;
+        position: absolute;
+        top: 1%;
+        right: 0px;
+        z-index: 1;
+        color: $white;
+        line-height: 40px;
+        height: 99%;
+        font-size: 40px;
+        background: $blue2;
+        pointer-events: none;
+        @include borderRadius(0 5px 5px 0);
+    }
+}
+
+%searchBox {
+    position: relative;
+    input {
+        background: $searchBlue;
+        border: 0;
+        border-bottom: 1px solid $searchBorderBlue;
+        outline: 0;
+        margin: 0;
+        color: white;
+        @include placeholder {
+            font-size: 18px;
+            color: $lightBlue1;
+            font-family: $metaOTBook;
+            text-transform: capitalize;
+        }
+        &:focus {
+            outline: none;
+            @include box-shadow(0, 0, 10px, rgba(77, 150, 196, 0.8));
+        }
+    }
+    &:before {
+        content: "\e928";
+        font-family: 'icomoon_local';
+        position: absolute;
+        right: 5px;
+        top: 0px;
+        font-size: 28px;
+        color: white;
+    }
+}
+
+%boxShadow {
+    @include box-shadow(0, 0, 5px, 1px, rgba(0, 0, 0, 0.1));
+    @include transition(box-shadow, 0.2s);
+    &:hover {
+        @include box-shadow(0, 0, 5px, 1px, rgba(0, 0, 0, 0.3));
+        @include transition(box-shadow, 0.2s);
+    }
+}
+
+%blueSliderButtons {
+    .slick-arrow {
+        background: $blue1;
+        color: $blue1;
+        &:before {
+            color: white;
+        }
+    }
+}
+
+%whiteSliderButtons {
+    .slick-arrow {
+        background:white;
+        color:white;
+        &:before {
+            color:$blue1;
+        }
+    }
+}
+
+%defaultSliderButtons {
+
+    .slider-buttons {
+        display: table-cell;
+        vertical-align: bottom;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .slick-arrow {
+        opacity: 1;
+        height: 75px;
+        width: 75px;
+        @include transition(opacity, 0.2s);
+        &:before {
+            font-size: 36px;
+            position:absolute;
+        }
+        &.slick-prev {
+            @extend %kihe-arrow-left;
+            &:before {
+                left:20px;
+            }
+        }
+        &.slick-next {
+            &:before {
+                @extend %kihe-arrow-right;
+                right:20px;
+            }
+        }
+        &.slick-disabled {
+            opacity: 0;
+            @include transition(opacity, 0.2s);
+        }
+    }
+}
+
+%generalSliderButtons {
+    @extend %defaultSliderButtons;
+    @extend %blueSliderButtons;
+    .slider-buttons {
+        @include tablet {
+            top: -1px;
+        }
+        @include mobile {
+            top: auto;
+            bottom: -100px;
+            left: auto;
+            right: 10px;
+            width: auto;
+            height: auto;
+        }
+    }
+    .slick-arrow {
+        position: absolute;
+        bottom: 50%;
+        height: 75px;
+        width: 75px;
+        z-index: 800;
+        &:before {
+            z-index: 800;
+            position: absolute;
+            top: 20px;
+        }
+        &.slick-prev {
+            left: 0;
+            overflow: hidden;
+            &:before {
+                left:20px;
+            }
+        }
+        &.slick-next {
+            right: 0;
+            &:before {
+                right:20px;
+            }
+        }
+        @include tablet {
+            height: 100px;
+            width: 40px;
+            &:before {
+                top: 30px;
+            }
+            &.slick-next:before {
+                right: 3px;
+            }
+            &.slick-prev:before {
+                left: 3px;
+            }
+        }
+        @include mobile {
+            bottom: 48px;
+            height: 50px;
+            width: 50px;
+            position: relative;
+            float: left;
+            margin: 0 1px;
+            &:before {
+                top: 6px;
+            }
+            &.slick-prev:before {
+                left: 7px;
+            }
+            &.slick-next:before {
+                right: 7px;
+            }
+        }
+    }
+}
+
+%socialSliderBlogButtons {
+    @extend %generalSliderButtons;
+    .slick-arrow {
+        bottom: 25%;
+    }
+    .slick-arrow {
+        &.slick-prev {
+            left: 15px;
+        }
+        &.slick-next {
+            right: 15px;
+        }
+    }
+}
+
+%squareSliderButtons {
+    @extend %defaultSliderButtons;
+    @extend %whiteSliderButtons;
+    .slider-buttons {
+        max-width: 75em;
+        right: 0;
+        left: 0;
+        top: auto;
+        bottom: 0;
+        margin: 0 auto;
+        height: auto;
+        z-index: 400;
+        > button {
+            position: relative;
+            float: left;
+            bottom: 0;
+            &:before {
+                top: 20px;
+                position:absolute;
+            }
+            @extend %boxShadow;
+        }
+    }
+}

@@ -1,0 +1,351 @@
+@import '../includes';
+@import 'partials/ourPeopleModal';
+$tablet: 768px;
+footer {
+    display: none;
+}
+
+#kihe-our-people {
+    min-height: 560px;
+    .kihe-table {
+        display: table;
+        width: 100%;
+    }
+    .kihe-table-cell {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    header {
+        &.page-header {
+            z-index: 99997;
+        }
+        .kihe-page-nav {
+            height: 130px;
+            li {
+                &.our-people-active-menu-item {
+                    a {
+                        color: #ed174f;
+                        border-color: #ed174f;
+                    }
+                }
+                a {
+                    padding-bottom: 0;
+                    text-decoration: none;
+                    border-bottom: solid 1px $blue;
+                }
+            }
+            @media screen and(max-width: $tablet) {
+                position: relative;
+                display: block;
+                height: auto;
+                width: 100%;
+                padding-left: 15px;
+                padding-bottom: 20px;
+                z-index: 10;
+                ul {
+                    margin-left: 0px;
+                }
+            }
+            @media screen and(max-width: $mobileLandscape) {
+                padding-right: 15px;
+            }
+            @media screen and(min-width: $mobileLandscape) and(max-width: 1220px) {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+        #kihe-fixed-menu-container {
+            position: fixed;
+            width: 100%;
+            top: 70px;
+            left: 0px;
+            background: #fff;
+            z-index: 99997;
+            @media screen and(max-width: $mobileLandscape) {
+                background-color: #f9f5f5;
+                padding-top: 20px;
+            }
+            @media screen and(max-width: $tablet) {
+                padding-top: 20px;
+            }
+        }
+        .kihe-page-title {
+            position: relative;
+            white-space: nowrap;
+            width: 1px;
+            h1 {
+                display: inline-block;
+                font-size: 2.375em;
+                font-family: metaOTBold;
+            }
+            @extend %kihe-caret-down;
+            &:before {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -35px;
+                margin-top: -30px;
+                font-family: kihe;
+                font-size: 70px;
+                color: #fff;
+                z-index: 10;
+                @media screen and(max-width: $mobileLandscape) {
+                    display: none;
+                }
+            }
+            @media screen and(max-width: $tablet) {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: auto;
+                padding-left: 15px;
+                z-index: -1;
+            }
+        }
+        .kihe-page-nav-menu {
+            @media screen and(max-width: $tablet) {
+                display: inline-block;
+                margin-top: 60px;
+                z-index: 2;
+            }
+            @media screen and(max-width: $mobileLandscape) {
+                width: 100%;
+            }
+        }
+        h1 {
+            font-family: metaOTBold;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            margin-left: 50px;
+            text-transform: uppercase;
+            li {
+                display: inline-block;
+                &:after {
+                    margin-left: 10px;
+                    content: "/";
+                    color: #b1b1b1;
+                }
+                a {
+                    font-family: metaOTBook;
+                    font-size: 1.125em;
+                    color: $blue;
+                    text-decoration: underline;
+                    @media screen and(max-width: $tablet) {
+                        font-size: 1em;
+                    }
+                }
+            }
+            @media screen and(max-width: $mobileLandscape) {
+                display: none;
+            }
+        }
+        .kihe-select-container {
+            display: none;
+            position: relative;
+            background: $white;
+            select {
+                display: block;
+                height: 60px;
+                padding: 10px;
+                -webkit-appearance: none !important;
+                background: 0 0;
+                border: none;
+                font-size: 1em;
+                font-family: metaOTBook;
+                color: $blue;
+                z-index: 4;
+                @include box-shadow(2px, 2px, 2px, 0px, #ccc);
+            }
+            @extend %kihe-caret-down;
+            &:before {
+                position: absolute;
+                font-family: kihe;
+                top: 13px;
+                right: 0px;
+                color: $blue;
+                font-size: 2em;
+                z-index: 5;
+                pointer-events: none;
+            }
+            @media screen and(max-width: $mobileLandscape) {
+                display: block;
+                width: 100%;
+            }
+        }
+        .kihe-banner-container {
+            display: none;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-size: cover;
+            z-index: 0;
+            .kihe-banner-overlay {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                background-color: #000;
+                opacity: .5;
+                z-index: -1;
+            }
+            .kihe-banner-text {
+                padding: 100px 40% 100px 0%;
+                h2,
+                p {
+                    color: #fff;
+                }
+                h2 {
+                    font-size: 3em;
+                    font-family: metaOTMedi;
+                    @media screen and(max-width: $tablet) {
+                        font-size: 2.375em;
+                    }
+                }
+                p {
+                    margin-top: 30px;
+                    font-size: 1.188em;
+                    font-family: metaOTBook;
+                    @media screen and(max-width: $tablet) {
+                        font-size: 1.125em;
+                    }
+                }
+                @media screen and(max-width: $tablet) {
+                    padding-right: 20px;
+                    padding-left: 20px;
+                }
+                @media screen and(min-width: $mobileLandscape) and(max-width: 1220px) {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+            img {
+                position: absolute;
+                width: 100%;
+                top: 0px;
+                left: 0px;
+                max-width: 100%;
+                -webkit-filter: brightness(30%);
+                /* Chrome, Safari, Opera */
+                filter: brightness(30%);
+                z-index: -2;
+            }
+        }
+    }
+}
+
+.our-people-header {
+    padding: 50px 0;
+    opacity: 0;
+
+    &.loaded{
+        opacity: 1;
+    }
+    @include transition(opacity , 1.5s);
+    h3 {
+        font-family: $metaOTBold;
+        font-size: 1.750em;
+        &:first-letter {
+            text-transform: uppercase;
+        }
+    }
+    p {
+        color: $fontDarkGrey;
+        font-family: $metaOTBook;
+    }
+}
+
+.our-people-grid {
+    display: flex;
+    flex-flow: row wrap;
+    padding-bottom: 100px;
+}
+
+.our-people-grid-item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: flex;
+    flex: 0 0 auto;
+    height: 430px;
+    width: 100%;
+    opacity: 0;
+    &.loaded {
+        opacity: 1;
+        .our-people-grid-content {
+            max-height: 300px;
+        }
+    }
+    @include transition(opacity, 1.5s);
+    @include mq(medium) {
+        height: 310px;
+        width: 33.333%;
+    }
+    @include mq(large) {
+        width: 20%;
+    }
+}
+
+.our-people-grid-content {
+    align-self: flex-end;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+    max-height: 0px;
+    overflow: hidden;
+    @include transition(max-height, 3s);
+    .title,
+    .description {
+        color: $white;
+        line-height: 1;
+    }
+    .title {
+        font-family: $metaOTBold;
+        font-size: 1.125em;
+        margin-bottom: 10px;
+    }
+    .description {
+        font-size: 0.875em;
+        margin-bottom: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .long-description {
+        display: none;
+        visibility: hidden;
+    }
+    &::after {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.6) 80%);
+        bottom: 0;
+        content: ' ';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        right: 0;
+        width: 100%;
+        z-index: -1;
+    }
+}
+
+
+/** Styles dependant on wp navbar */
+
+.logged-in {
+    #kihe-our-people {
+        header {
+            #kihe-fixed-menu-container {
+                @media screen and(max-width: $wpMobileMax) {
+                    top: $wpMobNavHeight;  
+                }
+                @media screen and(min-width: $wpDesktopMin) {
+                    top: $wpDeskNavHeight;
+                }
+            }   
+        }
+    }
+}

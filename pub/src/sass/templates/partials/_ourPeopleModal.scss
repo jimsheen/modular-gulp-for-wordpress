@@ -1,0 +1,143 @@
+.kihe-close {
+    @extend %kihe-close;
+}
+
+.kihe-our-people-modal {
+    padding: 0;
+    width: auto;
+    max-width: 750px;
+    border-width: 0;
+    z-index: 30000;
+    .kihe-modal-close {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 20;
+        color: #fff;
+        span {
+            font-size: 2em;
+        }
+    }
+    .profile-title, .profile-title p {
+        color:white;
+    }
+    .kihe-our-people-modal-header {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background-color: #a1c7cd;
+        z-index: 1;
+        @media screen and(max-width: $mobileLandscape) {
+            display: inline-block;
+            height: auto;
+            .table-cell {
+                display: block;
+                &:first-of-type {
+                    float: right;
+                    width: 100%;
+                    clear: left;
+                    padding-top: 240px;
+                    height: auto;
+                    .kihe-profile-overlay {
+                        background-size: auto 250%;
+                        background-position: center center;
+                        @include blur(50px);
+                    }
+                    .profile-fullname {
+                        font-size: 1.375em;
+                    }
+                    .profile-title {
+                        font-size: 1.063em;
+                    }
+                }
+                &:last-of-type {
+                    position: absolute;
+                    top: 70px;
+                    left: 20px;
+                    height: 150px;
+                    width: 150px;
+                    overflow: hidden;
+                    text-align: center;
+                    border-radius: 100%;
+                    img {
+                        position: absolute;
+                        left: 50%;
+                        margin-left: -90px;
+                        width: 180px;
+                    }
+                }
+            }
+        }
+        .kihe-person-profile {
+            position: relative;
+            vertical-align: bottom;
+            padding: 20px;
+            color: #fff;
+            .kihe-profile-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #000;
+                z-index: -1;
+                opacity: .5;
+                background-repeat: no-repeat;
+                background-size: auto 450%;
+                background-position: center left;
+                color: #fff;
+                @include blur(30px);
+                transform: translate3d(0, 0, 0);
+            }
+            span {
+                font-family: metaOTBook;
+                margin-top: 10px;
+            }
+            .profile-fullname {
+                font-size: 2em;
+            }
+            .profile-title {
+                font-size: 1.35em;
+            }
+            .profile-university {
+                font-size: 1.35em;
+            }
+        }
+        .kihe-person-image {
+            position: relative;
+            white-space: nowrap;
+            width: 1px;
+            img {
+                max-width: 200px;
+            }
+        }
+        span {
+            display: inline-block;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+    .kihe-our-people-modal-content {
+        max-height: 465px;
+        overflow: auto;
+        padding: 20px;
+        p {
+            color: $fontDarkGrey;
+            font-size: 1em;
+            font-family: metaOTBook;
+        }
+        .long-description {
+            font-family: metaOTBook;
+            color: $fontDarkGrey;
+            line-height: 1.25em;
+            @media screen and(max-width: $mobileLandscape) {
+                font-size: 1em;
+                line-height: 1.75em;
+            }
+        }
+    }
+}
+.reveal-overlay {
+    z-index: 300000;
+    background: rgba(10, 10, 10, .6);
+}

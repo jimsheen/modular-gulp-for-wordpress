@@ -1,0 +1,197 @@
+@import '../includes';
+@import 'partials/studyOptionsList';
+@import 'partials/blueBarHeader';
+#kihe-education-options-archive {
+    margin-bottom: 120px;
+    .kihe-banner-header {
+        margin-bottom: 120px;
+        h1 {
+            margin-bottom: 60px;
+        }
+    }
+    p {
+        @extend %merriweather;
+        font-size: 16px;
+        color: $fontDarkGrey;
+        margin-bottom: 50px;
+        &:first-child {
+            font-size: 19px;
+        }
+    }
+    article p {
+        margin-bottom: 0;
+    }
+}
+
+.kihe-caret-down {
+    @extend %kihe-caret-down;
+}
+
+.kihe-arrow-right {
+    @extend %kihe-arrow-right;
+}
+
+.study-options-module {
+    button.action-btn {
+        @extend %actionBtn;
+        width: auto;
+        display: inline-block;
+        float: left;
+        clear: both;
+        &:disabled {
+            cursor: not-allowed;
+            background: $grey;
+        }
+    }
+    #options-select {
+        @include transition(all, 0.4s, ease-in-out);
+        span {
+            font-size: 24px;
+        }
+        .info {
+            padding-bottom: 60px;
+            span,
+            p {
+                font-size: 15px;
+                color: $fontGrey;
+            }
+        }
+        .select-container {
+            @extend %blue-arrow-select;
+        }
+        .filter-container {
+            opacity: 1;
+            span {
+                color: $fontGrey;
+            }
+        }
+        br.clr {
+            display: none;
+            @include tablet {
+                display: block;
+            }
+        }
+        @include tabletPortraitAndUp {
+            &.filtered {
+                @include tabletPortraitAndUp {
+                    .filter-container {
+                        opacity: 0;
+                        @include transition(all, 0.2s, ease-in-out);
+                    }
+                }
+            }
+            &.after-filtered {
+                .filter-container {
+                    opacity: 1;
+                    @include transition(all, 0.6s, ease-in-out);
+                }
+                .info {
+                    padding-bottom: 20px;
+                    span {
+                        font-size: 15px;
+                    }
+                }
+                span {
+                    font-size: 18px;
+                    margin-bottom: 5px;
+                    display: block;
+                }
+                .hide-span {
+                    display: none;
+                }
+                .select-container {
+                    margin-bottom: 5px;
+                }
+                button {
+                    width: auto;
+                    margin-top: 60px;
+                }
+            }
+        }
+        @include tablet {
+            .hide-span {
+                display: none;
+            }
+        }
+    }
+    #study-options-list {
+        ul li {
+            display: none;
+        }
+        @include tablet {
+            > span {
+                margin: 0;
+                margin-bottom: 20px;
+            }
+        }
+    }
+    hr {
+        display: inline-block;
+    }
+}
+
+#study-options-posts {
+    margin-top: 50px;
+    @include mobile {
+        margin-top: 0;
+    }
+    .info {
+        margin-bottom: 50px;
+    }
+    article {
+        float: left;
+        width: 48%;
+        margin-right: 2%;
+        margin-bottom: 30px;
+        background: white;
+        max-height: 150px;
+        min-height: 150px;
+        position: relative;
+        @include box-shadow(0, 2px, 5px, rgba(0, 0, 0, 0.2));
+        &:nth-child(2n) {
+            margin-left: 2%;
+            margin-right: 0;
+        }
+        span {
+            color: $fontGrey;
+        }
+        .post-image {
+            float: left;
+            width: 26%;
+            border-left: 4px solid $red;
+            height: 150px;
+            img {
+                height: 100%;
+                max-height: 150px;
+            }
+        }
+        .post-content {
+            float: left;
+            width: 60%;
+            margin: 0 0 0 4%;
+            padding: 15px 0;
+        }
+        @include mobile {
+            border-bottom: 4px solid $red;
+        }
+    }
+    i {
+        position: absolute;
+        top: 40%;
+        right: 10px;
+        font-size: 32px;
+        color: $lightGrey;
+    }
+    @include tablet {
+        article {
+            width: 100%;
+            margin-right: 0;
+            margin-left: 0;
+            &:nth-child(2n) {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+

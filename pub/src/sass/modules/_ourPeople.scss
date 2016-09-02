@@ -1,0 +1,58 @@
+@import '../templates/partials/ourPeopleModal';
+.our-people-content {
+    padding: 50px 0;
+    @import 'partials/sliderDots';
+    .slider-container {
+        min-height: 400px;
+        height: 100%;
+        overflow: hidden;
+        clear: both;
+    }
+    .columns > div {
+        position:relative;
+    }
+    .slider-dots {
+        float: right;
+        position: absolute;
+        top: 30px;
+        right:0;
+        ul {
+            margin: 0;
+        }
+        li {
+            background: #d7d7d7;
+            &.slick-active {
+                background: #606060;
+            }
+        }
+    }
+    .slick-slider {
+        height: 100%;
+        background: none;
+    }
+    .slick-list {
+        overflow: visible;
+    }
+    article > div {
+        @extend %boxShadow;
+    }
+    p {
+        margin-bottom: 0;
+    }
+    a {
+        display: block;
+    }
+    .image {
+        text-align: center;
+        height: 270px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .content {
+        padding: 20px;
+        background: white;
+    }
+    .long-description {
+        display: none;
+    }
+}

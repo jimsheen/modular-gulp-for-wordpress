@@ -1,0 +1,65 @@
+/**
+ *
+ * FOOTER - MOBILE VIEW
+ *
+ */
+@media (max-width: 1024px) {
+
+  .main_footer {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 15px;
+
+    &:after {
+      background-position: calc(100% - 10px) 0;
+    }
+
+    .title {
+      padding-top: 60px;
+      padding-bottom: 20px;
+    }
+
+    .copyright {
+      padding-top: 30px;
+      color: $white;
+
+      a {
+        color: $white;
+      }
+
+      .footer_right_side_links {
+        text-align: left;
+
+        .right_links {
+          padding-left: 0;
+          padding-right: 10px;
+        }
+      }
+    }
+
+    /** Different widths for 5 columns design **/
+    .large-up-5 {
+      .links_list {
+        &.column {
+          width: 50%;
+        }
+        &.column2 {
+          width: 50%;
+          float: left;
+        }
+      }
+
+      .links_list_with_icons.column {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media (min-width: 40em) {
+  .column2 {
+    padding-left: .9375rem;
+    padding-right: .9375rem;
+  }
+}
+

@@ -1,0 +1,90 @@
+.main_image_menu_text {
+    background-size: cover;
+    padding-bottom: 75px;
+    padding-top: 60px;
+    text-align: center;
+
+    @include mq(medium) {
+        padding-bottom: 110px;
+        padding-top: 110px;
+    }
+
+    @include mq(large) {
+        height: 760px;
+        padding-top: 210px;
+    }
+
+    .title {
+        font-family: $metaOTBook;
+        font-size: 22px;
+        margin-bottom: 40px;
+
+        @include mq(medium) {
+            font-size: 36px;
+            margin: 0 auto 40px;
+            max-width: 600px;
+        }
+
+        @include mq(large) {
+            font-size: 48px;
+            margin-bottom: 50px;
+            max-width: 1100px;
+        }
+
+        & > p {
+            color: $white;
+            line-height: 1.3;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+        }
+    }
+
+    .column {
+        & + div {
+            @include mq(small) {
+                margin-top: 10px;
+            }
+
+            @include mq(medium-only) {
+                margin-top: 18px;
+            }
+        }
+    }
+
+    .submenu {
+        background-color: $white;
+        border-left: 2px solid $red;
+        margin: 0 auto;
+        max-width: 355px;
+        text-align: left;
+
+        a {
+            color: $red;
+            display: block;
+            font-family: $metaOTMedi;
+            font-size: 18px;
+            line-height: 55px;
+            padding: 0 10px;
+
+            @include mq(medium) {
+                font-size: 20px;
+                line-height: 65px;
+                padding: 0 20px;
+            }
+
+            @include mq(large) {
+                line-height: 70px;
+            }
+
+            &::after {
+                color: #b1b1b1;
+                content: '\e901';
+                float: right;
+                font-family: 'kihe';
+                font-size: 22px;
+            }
+        }
+    }
+}

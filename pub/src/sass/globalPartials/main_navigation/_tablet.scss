@@ -1,0 +1,274 @@
+.kihe-main-header-tablet {
+    background-color: $white;
+    @media screen and(min-width: 1165px) {
+        display: none;
+    }
+    .kihe-navigation-menu-tablet {
+        margin-left: 15px;
+    }
+    /** Header elements */
+    .kihe-logo-container {
+        height: 70px;
+        width: 100%;
+        padding-left: 15px;
+        overflow: hidden;
+    }
+    #menu-toggle {
+        width: 70px;
+        min-width: 70px;
+        text-align: center;
+        border-left: solid 1px #eee;
+        color: $logoPurple;
+        span {
+            font-size: 2em;
+        }
+    }
+    .kihe-search-toggle {
+        text-align: left;
+        padding: 0;
+        border-left: none;
+        &:hover {
+            background-color: transparent;
+            color: $logoPurple;
+        }
+    }
+    .kihe-languages-menu {
+        width: 1px;
+        text-align: center;
+        padding: 0px 15px;
+        a {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            font-family: $metaOTBook;
+        }
+        .full-text {
+            @media screen and(max-width: $mobilePortrait) {
+                display: none;
+            }
+        }
+        .cropped-text {
+            display: none;
+            @media screen and(max-width: 479px) {
+                display: table-cell;
+            }
+        }
+        span {
+            display: inline-block;
+            position: relative;
+            padding-right: 15px;
+            margin-bottom: 3px;
+            font-size: 1em;
+            &:after {
+                right: 0px;
+                width: 20px;
+                font-size: 30px;
+            }
+        }
+        .dropdown {
+            display: table;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 0vh;
+            max-height: 0px;
+            overflow: hidden;
+            background-color: $logoPurple;
+            text-align: center;
+            @include transition(all, .2s);
+            a {
+                color: $white;
+                max-height: 0px;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                @include transition(all, .2s);
+            }
+            .content {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+        &.dropped-down {
+            background-color: $logoPurple;
+            color: $white;
+            .dropdown {
+                height: calc(100vh - 70px);
+                max-height: 3000px;
+                a {
+                    max-height: 50px;
+                    padding: 15px;
+                }
+            }
+        }
+    }
+    /** Top level drilldown */
+    > .is-drilldown {
+        position: absolute;
+        /** Override foundation */
+        min-height: auto !important;
+        height: calc(100vh - 70px);
+        width: 100%;
+        max-width: 1500px !important;
+        background: $white;
+        margin-left: 100%;
+        border-top: solid 1px #ccc;
+        overflow: scroll;
+        @include transition(margin, .2s);
+        &.expanded {
+            margin-left: 0%;
+        }
+        > ul {
+            position: relative;
+            height: auto;
+            > li {
+                border-bottom: solid 1px $grey;
+                @include mobileLandscape {
+                    height: 80px;
+                }
+                @include mobileLandscape {
+                    height: 80px;
+                }
+                a {
+                    border-bottom: solid 1px $faintWhite;
+                    height: 105px;
+                    width: 100%;
+                    color: $logoPurple;
+                    @include mobileLandscape {
+                        height: 80px;
+                    }
+                    @include mobileLandscape {
+                        height: 80px;
+                    }
+                    &:after {
+                        border: none;
+                    }
+                }
+            }
+        }
+        .js-drilldown-back {
+            a {
+                display: table;
+                width: 100%;
+                color: $faintWhite;
+                padding-left: 15px;
+                /** Remove foundation defaults */
+                &:before,
+                &:after {
+                    display: none;
+                }
+                > span {
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+                .kihe-submenu-item-arrow {
+                    display: none;
+                }
+            }
+        }
+    }
+    /* Submenu drilldown */
+    .kihe-drilldown-submenu {
+        position: fixed;
+        top: 70px;
+        height: calc(100vh - 70px);
+        width: 90%;
+        background: $logoPurple;
+        overflow: scroll;
+        .is-drilldown-submenu-item {
+            border-color: $faintWhite;
+            padding-left: 15px;
+            a {
+                color: $white;
+            }
+        }
+        .sub-menu-item-title,
+        .sub-menu-item-description {
+            display: block;
+        }
+        .sub-menu-item-description {
+            margin-top: 10px;
+            @include mobileLandscape {
+                display: none;
+            }
+        }
+        .kihe-submenu-item-arrow {
+            color: $faintWhite;
+            @include mobileLandscape {
+                padding-right: 15px;
+            }
+        }
+    }
+    .kihe-submenu-item-arrow {
+        padding-right: 15px;
+        text-align: right;
+        color: $grey;
+    }
+    .top-level-link {
+        display: table;
+    }
+    .is-drilldown * {
+        font-size: 26px;
+        .sub-menu-item-description {
+            font-size: 16px;
+        }
+        @include mobileLandscape {
+            font-size: 22px;
+        }
+    }
+    .top-level-link span,
+    .is-drilldown-submenu-item span {
+        &.kihe-submenu-item-arrow {
+            span {
+                font-size: 32px;
+                @include mobileLandscape {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+}
+
+.kihe-search-panel-desktop {
+    @media screen and(max-width: $tablet) {
+        &.expanded {
+            width: 100% !important;
+        }
+    }
+}
+
+
+/** Styles dependant on wp navbar */
+
+.logged-in {
+    .kihe-main-header-tablet {
+        @media screen and(min-width: $wpDesktopMin) {
+            > .is-drilldown {
+                height: calc(100vh - 102px);
+
+                .is-drilldown-submenu{
+                    top: $wpDeskNavHeight;
+                    height: calc(100vh - 102px);;
+                }
+            }
+        }
+        @media screen and(max-width: $wpMobileMax) {
+            .kihe-languages-menu {
+                &.dropped-down {
+                    .dropdown {
+                        height: calc(100vh - 116px);
+                    }
+                }
+            }
+            > .is-drilldown {
+                height: calc(100vh - 116px);
+
+                .is-drilldown-submenu{
+                    top: $wpMobNavHeight;
+                    height: calc(100vh - 116px);
+                }
+            }
+        }
+    }
+}

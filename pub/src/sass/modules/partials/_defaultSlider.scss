@@ -1,0 +1,33 @@
+.slider-module {
+    position: relative;
+    margin-bottom: 150px;
+    .slider-container {
+        position: relative;
+        background: $bg;
+    }
+    .slick-slider {
+        height: auto;
+        margin: 0;
+        background: none;
+        > div {
+            height: 100%;
+            > div {
+                height: 100%;
+            }
+        }
+    }
+    .slick-list {
+        max-width: 75rem;
+        margin: 0 auto;
+        overflow: visible;
+    }
+    .slick-slide {
+        display: block;
+        opacity: 0.3;
+        @include transition(opacity, 0.2s);
+        &.slick-active {
+            opacity: 1;
+            @include transition(opacity, 0.2s);
+        }
+    }
+}

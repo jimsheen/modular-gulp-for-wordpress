@@ -1,0 +1,97 @@
+@import '../includes';
+@import '../libs/slick';
+@import '../modules/generalSlider';
+@import '../modules/popularSlider';
+@import '../modules/postSlider';
+@import '../modules/socialSliderBlog';
+#kihe-blog-banner {
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+    position: relative;
+    @include smallDesktop {
+        height: 50vh;
+    }
+    .full-banner-image {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        img {
+            width: 100%;
+            height: auto;
+        }
+        @include mobile {
+            width: 150%;
+            overflow: hidden;
+            img {
+                width: auto;
+                height: 100%;
+            }
+        }
+    }
+    .featured-post {
+        position: relative;
+        height: 100%;
+        > div {
+            height: 100%;
+        }
+        article {
+            position: absolute;
+            left: 20px;
+            bottom: 20%;
+            > span {
+                display: block;
+            }
+        }
+        h1 {
+            color: white;
+            font-size: 32px;
+        }
+        span.category {
+            color: $yellow1;
+            font-family: $metaOTBold;
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        span.description {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .read-more-btn {
+            display: inline-block;
+            background: $yellow1;
+            color: $darkGrey;
+            padding: 10px 20px;
+            font-size: 24px;
+            i {
+                font-size: 34px;
+                padding-left: 10px;
+            }
+        }
+    }
+}
+
+.icon-twitter {
+    @extend %icon-twitter;
+}
+
+.icon-facebook {
+    @extend %icon-facebook;
+}
+
+.icon-youtube {
+    @extend %icon-youtube;
+}
+
+.icon-instagram {
+    @extend %icon-instagram;
+}
+
+
+.post-slider .slick-arrow {
+    bottom:40%;
+}
+

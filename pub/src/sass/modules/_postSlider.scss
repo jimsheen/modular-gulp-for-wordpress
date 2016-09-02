@@ -1,0 +1,28 @@
+.post-slider {
+    .slick-slider {
+        height: 450px;
+        h1 {
+            font-size: 22px;
+        }
+    }
+    .slider-dots li.slick-active {
+        background: black;
+    }
+    span.description {
+        color: white;
+        padding-top: 27px;
+        display: block;
+        font-size: 14px;
+    }
+    .ghost-table {
+        .top {
+            height: 60%;
+        }
+        .bottom {
+            height: 40%;
+        }
+    }
+    .slick-slide img {
+        padding-top: 80px;
+    }
+}

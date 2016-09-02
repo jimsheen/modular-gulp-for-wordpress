@@ -1,0 +1,116 @@
+.image-gallery {
+    @import 'partials/sliderDots';
+    > div {
+        position: relative;
+    }
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        > div {
+            float: left;
+            width: 50%;
+            height: 100%;
+            position: relative;
+            @include mq('small') {
+                width: 100%;
+            }
+        }
+    }
+    .image {
+        float: left;
+        position: absolute;
+        width: 33.33%;
+        height: 30%;
+        border: 1px solid white;
+        @include transition(all, 0.2s, ease-in-out);
+        background-repeat: no-repeat;
+        background-position: center;
+        span {
+            display: block;
+            position: absolute;
+            left: 20px;
+            bottom: -20px;
+            color: white;
+            font-family: $metaOTMediItalic;
+            font-size: 18px;
+            @extend %textShadow;
+            visibility: hidden;
+            opacity: 0;
+            @include transition(all, 0.2s, ease-in-out);
+        }
+        &.small {
+            cursor: pointer;
+            background-size: 120%;
+            &:hover {
+                background-size: 130%;
+                .expand {
+                    visibility: visible;
+                    opacity: 1;
+                    @include transition(all, 0.2s, ease-in-out);
+                }
+            }
+        }
+        &.large {
+            width: 100%;
+            height: 70%;
+            left: 0;
+            background-size: cover;
+            &:hover span {
+                visibility: visible;
+                opacity: 1;
+                bottom: 20px;
+                @include transition(all, 0.2s, ease-in-out);
+            }
+        }
+    }
+    .left .large {
+        top: 0;
+    }
+    .right .large {
+        bottom: 0;
+    }
+    .expand {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: table;
+        @include transition(all, 0.2s, ease-in-out);
+        @extend %kihe-expand;
+        &:before {
+            color: white;
+            display: table-cell;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+            font-size: 60px;
+        }
+    }
+    .mobile-slider {
+        .image {
+            position: static;
+            height: 400px;
+        }
+    }
+    .slider-dots {
+        float: right;
+        position: absolute;
+        top: 30px;
+        right: 0;
+        ul {
+            margin: 0;
+        }
+        li {
+            background: #d7d7d7;
+            &.slick-active {
+                background: #606060;
+            }
+        }
+    }
+}

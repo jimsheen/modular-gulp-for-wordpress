@@ -1,0 +1,188 @@
+.kihe-sidebar {
+    font-family: $metaOTMedi!important;
+    .kihe-sidebar-logo {
+        width: 100%;
+        margin-bottom: 20px;
+        @include box-shadow(0px, 2px, 5px, 0px, #ddd);
+        @media screen and(max-width: $tablet) {
+            display: none;
+        }
+    }
+    .links_menu,
+    .links_block {
+        margin-bottom: 20px;
+        a {
+            display: block;
+            padding: 25px 20px;
+            margin-bottom: 1px;
+            background-color: #fff;
+            color: $logoPurple;
+            font-family: metaOTMedi;
+            @include box-shadow(0px, 2px, 5px, 0px, #ddd);
+            @extend %kihe-arrow-right;
+            &:before {
+                font-size: 2em;
+                line-height: 1em;
+                margin-top: -8px;
+                margin-right: -8px;
+                float: right;
+                color: $gray;
+            }
+        }
+    }
+    .social_links_block {
+        margin-top: 30px;
+        display: inline-block;
+        width: 100%;
+        .links_block_title {
+            margin-bottom: 10px;
+            color: $darkGrey;
+            font-family: metaOTMedi;
+        }
+        a {
+            display: table;
+            table-layout: fixed;
+            float: left;
+            height: 25px;
+            width: 45px;
+            padding: 10px;
+            margin-right: 5px;
+            border: solid 1px $gray;
+            background-color: $white;
+            color: $logoPurple;
+            text-align: center;
+            @include borderRadius(100%);
+            span {
+                display: table-cell;
+                vertical-align: middle;
+                font-size: 1.5em;
+            }
+        }
+        @media screen and(max-width: $tablet) {
+            text-align: center;
+            a {
+                display: inline-table;
+                float: none;
+            }
+        }
+    }
+    .map_block {
+        margin-bottom: 20px;
+        background-color: $white;
+        @include box-shadow(0px, 2px, 5px, 0px, #ddd);
+        @media screen and(max-width: $tablet) {
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+            .map_block_map,
+            .map_block_text {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            .map_block_map {
+                width: 45%;
+            }
+        }
+        @media screen and(max-width: $mobileLandscape) {
+            .map_block_map {
+                width: 55%;
+            }
+        }
+        @media screen and(max-width: $mobilePortrait) {
+            display: block;
+            .map_block_map,
+            .map_block_text {
+                display: block;
+                width: 100%;
+            }
+            .map_block_map {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+        .map_block_text {
+            padding: 20px;
+            .map_block_title {
+                color: $logoPurple;
+                font-family: metaOTMedi;
+            }
+            .map_block_address {
+                p,
+                a {
+                    color: $darkGrey;
+                    font-family: metaOTBook;
+                    font-size: .85em;
+                }
+                p {
+                    margin-top: 10px;
+                }
+                a {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .html_layout {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: $white;
+        border-left: solid 4px $logoPurple;
+        @include box-shadow(0px, 2px, 5px, 0px, #ddd);
+    }
+    @media screen and(max-width: $tablet) {
+        a.is_sticky {
+            display: none;
+        }
+    }
+}
+
+.sticky-sidebar-container {
+    position: relative;
+}
+
+.sticky-sidebar {
+    position: absolute;
+    width: 100%;
+    > div {
+        position: relative;
+    }
+    p {
+        font-size: 14px;
+    }
+    &.stuck > div {
+        position: fixed;
+        top: 140px;
+    }
+    .anchors-block {
+        a {
+            padding: 10px 0;
+            font-size: 18px;
+            color: $lightBlue1;
+            display: block;
+            position: relative;
+            &:hover,
+            &.active {
+                color: $blue2;
+                &:after {
+                    content: '\e905';
+                    position: absolute;
+                    left: -32px;
+                    top: 5px;
+                    font-size: 30px;
+                    color: $red;
+                    font-family: kihe!important;
+                }
+            }
+        }
+    }
+    .anchors-block {
+        top: 0;
+        background: white;
+        padding: 20px;
+        border-left: 2px solid $red;
+        @include tablet {
+            display: none;
+        }
+    }
+}

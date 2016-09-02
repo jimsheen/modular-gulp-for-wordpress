@@ -1,0 +1,49 @@
+.large-text-testimonial {
+    a {
+        display: block;
+        padding: 70px 40px;
+        background: white;
+         @extend %boxShadow;
+    }
+    .quotation-mark {
+        @extend %kihe-quote;
+        font-size: 42px;
+        text-align: center;
+        line-height: 1;
+        display: block;
+    }
+    .summary {
+        font-size: 24px;
+        margin: 40px 0;
+        text-align: center;
+    }
+    .image {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: inline-block;
+        overflow: hidden;
+    }
+    .bottom {
+        margin: 0 auto;
+        width: 30%;
+        display: table;
+        text-align: center;
+        > div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        span {
+            display: block;
+            color: $fontGrey;
+        }
+        .title {
+            font-weight: bold;
+        }
+    }
+    .content {
+        text-align: left;
+        margin-left: 20px;
+        font-size: 18px;
+    }
+}

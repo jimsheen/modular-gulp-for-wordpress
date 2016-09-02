@@ -1,0 +1,138 @@
+/* media query variables */
+
+$mobilePortrait: 480px;
+$mobileLandscape: 640px;
+$tabletPortrait: 640px;
+$tabletPortraitMax: 768px;
+$tablet: 1023px;
+$smallDesktop: 1024px;
+
+/** Variables dependant on WP navbar */
+
+$wpMobileMax: 782px;
+$wpDesktopMin: 783px;
+$wpMobNavHeight: 116px;
+$wpDeskNavHeight: 102px;
+$viewPortHeightMobWp: calc(100vh - $wpMobNavHeight);
+$viewPortHeightDeskWp: calc(100vh - $wpDeskNavHeight);
+
+
+/* media query mixins */
+
+@mixin desktop {
+    @media (min-width: #{desktop}) {
+        @content;
+    }
+}
+
+@mixin tabletPortraitAndUp {
+    @media (min-width: #{$tabletPortraitMax}) {
+        @content;
+    }
+}
+
+@mixin smallDesktop {
+    @media (max-width: #{$smallDesktop}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$smallDesktop}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: #{$tablet}) {
+        @content;
+    }
+}
+
+@mixin tabletPortrait {
+    @media (min-width: #{$tabletPortrait}) and (max-width: #{$tablet}) {
+        @content;
+    }
+}
+
+@mixin mobileLandscape {
+    @media (max-width: #{$mobileLandscape}) {
+        @content;
+    }
+}
+
+@mixin mobilePortrait {
+    @media (max-width: #{$mobilePortrait}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$mobileLandscape}) {
+        @content;
+    }
+}
+
+@mixin iphone4 {
+    @media (max-width: #{$mobilePortrait}) and (max-height: 480px) {
+        @content;
+    }
+}
+
+@mixin iphone5 {
+    @media (max-width: #{$mobilePortrait}) and (max-height: 568px) {
+        @content;
+    }
+}
+
+@mixin iphone6 {
+    @media (max-width: #{$mobilePortrait}) and (max-height: 736px) {
+        @content;
+    }
+}
+
+
+/* Example:
+    div {
+        @include mobilePortrait {
+            height:50px;
+        }
+    }
+*/
+
+/// Breakpoint Manager
+/// A mixin to fetch and output media queries from a Sass-map.
+///
+/// @example scss - Breakpoint Manager
+///   @include mq(breakpoint) {…}
+///   // @media (min-width: breakpoint) {…}
+// Foundation-compatible breakpoints
+$foundation-breakpoints: ( 'small': (max-width: 39.9375em), 'medium': (min-width: 40em), 'medium-only': (min-width: 40em, max-width: 63.9375em), 'large': (min-width: 64em), 'large-only': (min-width: 64em, max-width: 74.9375em));
+// Create a single media condition out of breakpoint map
+@mixin media($queries) {
+    @if length($queries)==0 {
+        @content;
+    }
+    @else {
+        $first-key: nth(map-keys($queries), 1);
+        @media ($first-key: map-get($queries, $first-key)) {
+            $queries: map-remove($queries, $first-key);
+            @include media($queries) {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin mq($breakpoint) {
+    // Get the query map for $foundation-breakpoints map
+    $queries: map-get($foundation-breakpoints, $breakpoint);
+    // If there is no query called $breakpoint in map, throw an error
+    @if not $queries {
+        @error "No value could be retrieved from `#{$breakpoint}`. " + "Please make sure it is defined in `$foundation-breakpoints` map.";
+    }
+    // Include the media mixin with $queries
+    @include media($queries) {
+        @content;
+    }
+}

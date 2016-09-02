@@ -1,0 +1,109 @@
+.video-gallery {
+  margin-top: 35px;
+  padding: 10px 0 20px;
+
+  @include mq(medium) {
+    margin-top: 50px;
+    padding-bottom: 35px;
+  }
+
+  &-title {
+    color: #005ea5;
+    font-size: 20px;
+    margin-bottom: 40px;
+
+    @include mq(medium) {
+      font-size: 28px;
+      margin-bottom: 50px;
+    }
+  }
+
+  &-slide {
+    background-size: cover;
+    position: relative;
+
+    // Keep slides at a 16:9 aspect ratio
+    &::before {
+      content: ' ';
+      display: block;
+      padding-top: 56.25%;
+      width: 100%;
+    }
+  }
+
+  // Play button
+  &-anchor {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    // Centre play button
+    i {
+      bottom: 0;
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 80px;
+      height: 80px;
+      left: 0;
+      margin: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 69px;
+    }
+  }
+}
+
+// Thumbnail navigation
+.video-gallery-nav {
+  .slick-list {
+    margin: 15px 30px;
+  }
+
+  .slick-slide {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  // Navigation arrows
+  .slick-prev,
+  .slick-next {
+    color: transparent;
+    cursor: pointer;
+    display: block;
+    font-size: 0;
+    height: 32px;
+    line-height: 0;
+    outline: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    width: 30px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    color: #b1b1b1;
+    font-size: 32px;
+  }
+
+  .slick-prev {
+    left: 0;
+
+    @extend %icon-angle-left;
+  }
+
+  .slick-next {
+    right: 0;
+
+    @extend %icon-angle-right;
+  }
+}
+
+
+.icon-play-circle {
+  @extend %icon-play-circle;
+}

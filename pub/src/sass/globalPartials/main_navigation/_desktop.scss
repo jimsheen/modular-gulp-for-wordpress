@@ -1,0 +1,158 @@
+.kihe-main-header-desktop {
+    padding-left: 15px;
+    background-color: $white;
+    @media screen and(max-width: 1164px) {
+        display: none;
+    }
+}
+
+.kihe-navigation-menu {
+    width: 1px;
+    white-space: nowrap;
+    > li {
+        display: table-cell;
+        a {
+            display: table-cell;
+            vertical-align: middle;
+            height: 70px;
+            padding: 0px 25px;
+            font-size: 20px;
+            color: $logoPurple;
+        }
+        &:nth-child(4n) {
+            border-left: solid 1px #eee;
+        }
+        &:hover {
+            background-color: $logoPurple;
+            .kihe-sub-menu-container {
+                max-height: 500px;
+                transition-delay: .4s;
+            }
+            > a {
+                color: $white;
+            }
+        }
+    }
+    .kihe-sub-menu-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        max-height: 0px;
+        overflow: hidden;
+        background-color: $logoPurple;
+        @include transition(max-height, .1s);
+        > .row {
+            padding-top: 20px;
+        }
+        .table {
+            min-height: 130px;
+            width: 100%;
+            border-bottom: solid 1px $faintWhite;
+        }
+        a {
+            display: table;
+            min-height: 130px;
+            padding: 0;
+            border-bottom: solid 1px $faintWhite;
+            @include transition(all, .2s);
+            &:hover {
+                .sub-menu-item-title,
+                .sub-menu-item-description {
+                    border-color: rgba(255, 255, 255, 1);
+                }
+                .kihe-submenu-item-arrow {
+                    padding-right: 5px;
+                }
+            }
+        }
+        .kihe-submenu-item {
+            padding: 0px;
+        }
+        .kihe-submenu-item-arrow {
+            text-align: right;
+            @include transition(all, .2s);
+            span {
+                font-size: 2em;
+            }
+        }
+        .sub-menu-item-title {
+            font-size: 1.625em;
+        }
+        .sub-menu-item-description {
+            margin-top: 10px;
+            font-size: 1em;
+        }
+        .sub-menu-item-title,
+        .sub-menu-item-description {
+            display: inline-block;
+            border-bottom: solid 1px transparent;
+            height: auto;
+            padding: 0;
+            padding-bottom: 5px;
+            font-family: $metaOTBook;
+            @include transition(all, .3s);
+            &:hover {
+                border-color: $faintWhite;
+            }
+        }
+    }
+    .kihe-languages-menu {
+        position: relative;
+        @include transition(all, .4s);
+        > a {
+            padding-right: 35px;
+            &:after {
+                position: absolute;
+                right: 10px;
+                font-family: kihe;
+                content: "\e903";
+                font-size: 30px;
+                @media screen and(min-width: 1164px) {
+                    margin-top: -6px;
+                }
+            }
+        }
+        > ul {
+            position: absolute;
+            top: 100%;
+            right: 0px;
+            min-width: 140%;
+            max-height: 0px;
+            overflow: hidden;
+            background-color: $logoPurple;
+            @include transition(all, .2s);
+            li {
+                display: block;
+                width: 100%;
+                padding-left: 15px;
+                a {
+                    display: inline-block;
+                    height: auto;
+                    padding: 10px 0px;
+                    padding-bottom: 3px;
+                    margin: 0px 5px;
+                    margin-right: 15px;
+                    color: $white;
+                    font-size: 15px;
+                    border-bottom: solid 1px $logoPurple;
+                    @include transition(border-color, .3s);
+                    &:hover {
+                        border-color: $white;
+                    }
+                }
+                &:last-of-type {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        &.dropped-down {
+            background-color: $logoPurple;
+            a {
+                color: $white;
+            }
+            ul {
+                max-height: 300px;
+            }
+        }
+    }
+}

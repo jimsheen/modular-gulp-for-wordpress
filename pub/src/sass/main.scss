@@ -1,0 +1,101 @@
+@import 'includes';
+@import 'libs'; 
+@import 'components';
+@import 'globalPartials';
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+*:focus {
+    outline:0;
+}
+
+body {
+    font-family: metaOTBook;
+    color: #0A246A;
+    background: $bg;
+    padding-top: 70px;
+    overflow-x:hidden;
+    opacity: 0;
+    @include transition(opacity, 0.4s); 
+
+    &.loaded { 
+        opacity:1;
+    }
+}
+
+a {
+    color: $blue1;
+    @include transition(color, 0.2s);
+    &:hover,
+    &:focus {
+        color: $blue3;
+        outline:0;
+        @include transition(color, 0.2s);
+    }
+}
+
+span,
+p {
+    @extend %metaOTBook;
+}
+
+p {
+    color:$fontGrey;
+}
+
+span {
+    font-size: 15px;
+}
+
+h1 {
+    @extend %metaOTBold;
+    font-size: 40px;
+}
+
+h2 {
+    @extend %metaOTBold;
+    font-size: 28px;
+    color: $blue1;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+h4 {
+    @extend %metaOTBold;
+    font-size: 18px;
+}
+
+.table {
+    @extend %table;
+}
+
+.clr {
+    @extend %clr;
+}
+
+hr {
+    width: 100%;
+    max-width: 100%;
+    margin: 50px auto;
+}
+
+article {
+    h1 {
+        font-size: 20px;
+        color: $blue1;
+    }
+
+    &:focus {
+        outline:0;
+    }
+}

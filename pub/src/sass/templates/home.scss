@@ -1,0 +1,18 @@
+@import '../includes';
+@import '../contentTypes';
+
+main section {
+	padding:60px 0!important;
+	margin-top:0!important;
+	margin-bottom:0!important;
+}
+
+main section.feature-blocks {
+	margin-bottom:60px!important;
+}
+
+main section.full-width-video {
+	margin-top:60px!important;
+	margin-bottom:60px!important;
+	padding:0!important;
+}

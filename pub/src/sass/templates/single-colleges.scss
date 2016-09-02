@@ -1,0 +1,93 @@
+@import '../includes';
+@import '../contentTypes';
+@import 'partials/bannerHeader';
+@import 'partials/sidebar';
+@import 'partials/collegeUniStyles';
+.kihe-college-banner-content {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    z-index: 2;
+    .kihe-text-aligner {
+        @media screen and(max-width: $mobileLandscape) {
+            text-align: center;
+        }
+    }
+    img {
+        width: 260px;
+        margin-bottom: 45px;
+        @include box-shadow(0px, 2px, 50px, 0px, rgba(0, 0, 0, .5));
+        @include transition(all, .3s);
+        @media screen and(max-width: $mobileLandscape) {
+            margin-bottom: -47px;
+        }
+    }
+    .university-logo {
+        display: none;
+        @media screen and(max-width: $tablet) {
+            display: inline-block;
+        }
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        li {
+            display: inline-block;
+            a {
+                display: inline-block;
+                padding: 0;
+                padding-bottom: 10px;
+                margin: 0px 22px;
+                font-family: metaOTMedi;
+                font-size: 1.125em;
+                color: #fff;
+                border-bottom: solid 4px transparent;
+                &:first-of-type {
+                    margin-left: 0px;
+                }
+            }
+        }
+        @media screen and(max-width: $tablet) {
+            display: none;
+        }
+    }
+    .banner-nav {
+        z-index: 1;
+    }
+}
+
+.kihe-banner-header-title {
+    @media screen and(max-width: $tablet) {
+        display: none;
+    }
+}
+
+.kihe-college-main {
+    padding-top: 100px;
+    @media screen and(max-width: $tablet) {
+        .kihe-college-sidebar {
+            padding-bottom: 75px;
+        }
+    }
+}
+
+.kihe-tablet-cta-bar {
+    position: fixed;
+    height: 60px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 10000;
+    text-align: center;
+    @media screen and(min-width: $smallDesktop) {
+        display: none;
+    }
+    a {
+        background-color: #ed0f7a;
+        color: $white;
+        font-family: metaOTMedi;
+        &:nth-child(2n) {
+            border-left: solid 1px $white;
+        }
+    }
+}

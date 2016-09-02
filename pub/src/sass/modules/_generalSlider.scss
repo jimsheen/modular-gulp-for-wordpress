@@ -1,0 +1,120 @@
+@import 'partials/defaultSlider';
+
+.general-slider {
+
+    @import 'partials/sliderDots';
+    
+    @extend %generalSliderButtons;
+    > .title {
+        position: absolute;
+        left: 0;
+        top: -59px;
+        width: 100%;
+        span {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px 10px 10px;
+            font-size: 26px;
+            color: white;
+            font-family: $metaOTMedi;
+            float: left;
+        }
+    }
+    .description span {
+        color: $fontGrey;
+    }
+    .ghost-color {
+        position: absolute;
+        left: -1200px;
+        width: 1200px;
+        height: 100%;
+        top: 0;
+    }
+    .slider-dots {
+        float: left;
+    }
+    
+    article {
+        h1 {
+            font-size: 26px;
+            font-family: $metaOTBold;
+            a {
+                color: $blue1;
+            }
+        }
+        .category {
+            font-size: 14px;
+            font-family: $metaOTMedi;
+            font-weight: light;
+        }
+    }
+    .slick-slide {
+        img {
+            display: block;
+            position: Absolute;
+            top: 0;
+            left: 0;
+            height: auto;
+            width: 100%;
+        }
+        a {
+            overflow: hidden;
+        }
+        .bottom {
+            background: white;
+        }
+        .ghost-table {
+            border-bottom: 2px solid $red;
+        }
+    }
+    .ghost-table-container {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        .top {
+            background-color: $blue;
+        }
+    }
+    .ghost-table {
+        display: table;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        > div {
+            display: table-row;
+            vertical-align: middle;
+            width: 100%;
+        }
+        .top {
+            height: 50%;
+            a {
+                display: inline-block;
+                height: 100%;
+                position: relative;
+                width: 100%;
+            }
+        }
+        .bottom {
+            height: 50%;
+            > div {
+                padding: 20px;
+            }
+        }
+        .bottom > a {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 32px;
+            color: $fontGrey;
+        }
+
+        @include tablet {
+            .top {
+                height:60%;
+            }
+            .bottom {
+                height:40%;
+            }
+        }
+    }
+}

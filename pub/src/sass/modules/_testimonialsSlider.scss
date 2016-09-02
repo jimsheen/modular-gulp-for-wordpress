@@ -1,0 +1,145 @@
+@import 'partials/defaultSlider';
+.testimonials-slider-module {
+	
+	h1.title {
+		text-align:center;
+		margin-bottom:60px;
+	}
+    .slick-slider > div {
+        overflow: hidden;
+    }
+    .slick-slide {
+    	opacity:1!important;
+    }
+    article {
+        height: 500px;
+        @include tablet {
+        	min-height:500px;
+        }
+        @include mobile {
+        	height:auto;
+
+        }
+    }
+    .image {
+        position: relative;
+        height: 100%;
+        a {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 200;
+            width: 105%;
+            height: 100%;
+            @include mobile {
+            	position:static;
+            	width:100%;
+            	height:auto;
+            }
+        }
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+    @extend %squareSliderButtons;
+    .content {
+        position: relative;
+        height: 100%;
+        > div {
+            position: relative;
+            background: white;
+            left: -40px;
+            top: 40px;
+            height: 80%;
+            width: calc(100% + 50px);
+            z-index: 300;
+            padding: 20px;
+            @include mobile {
+            	position:static;
+            	width:100%;
+            }
+        }
+    }
+    .title {
+        height: 30%;
+
+        h1 {
+        	font-family: $metaOTBold;
+        	font-size:25px;
+        	line-height:1.2em;
+        }
+
+        .line-break {
+        	display:inline-block;
+        	width:100%;
+        	border-bottom:1px solid $borderGrey;
+        }
+       
+    }
+    .summary {
+        height: 55%;
+        > p {
+        	margin-top:20px;
+        	font-size:18px;
+        	font-family:$metaOTMedi;
+        	font-weight: 300;
+        	line-height:1.6em;
+        	color:$fontDarkGrey;
+
+        	@include tablet {
+        		font-size:15px;
+        	}
+        }
+    }
+    .link {
+        display: table;
+        width: 100%;
+
+        > * {
+            display: table-cell;
+        	color:$red;
+        }
+        i {
+            position: relative;
+        	font-size:32px;
+        	color:$fontGrey;
+            text-align: right;
+            line-height: 1;
+
+            &:before{
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                margin-right: -8px;
+            }
+        }
+    }
+
+    @include mobile {
+
+    	article {
+    		display:table;
+    		height:800px;
+
+    		> div {
+    			display:table-row;
+    		}
+
+    		.image {
+    			height:40%;
+    		}
+    		.content {
+    			height:60%;
+    		}
+    	}
+    	.slider-buttons {
+    		top:31%;
+    		left:10px; 
+    	}
+    }
+}
+
+.kihe-arrow-right {
+    @extend %kihe-arrow-right;
+}

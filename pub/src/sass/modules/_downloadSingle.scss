@@ -1,0 +1,58 @@
+.download-area {
+	padding:50px 0;
+    article {
+        margin-bottom: 50px;
+
+        &:last-child {
+        	margin-bottom:0;
+        }
+    }
+    article > div {
+        @include flexbox;
+        @extend %boxShadow;
+				background-color: $white;
+    }
+    .image {
+        border-left: 2px solid $red;
+        > div {
+            padding: 30px;
+            display: table-cell;
+        }
+    }
+    .content {
+        border-left: 1px solid $grey;
+        padding: 30px 70px 30px 30px;
+        min-height: 200px;
+        display: table;
+        position: relative;
+        @include icon('after', 'kihe', 'download');
+        &:after {
+            position: absolute;
+            right: 20px;
+            font-size: 32px;
+            top: 40%;
+            color: $fontGrey;
+        }
+        > * {
+            display: table-row;
+            width: 100%;
+        }
+        > div {
+            height: 80%;
+        }
+        h1 {
+            font-size: 26px;
+            margin-bottom: 0;
+        }
+        span.dltext {
+            color: $fontDarkGrey;
+            font-family: $metaOTBold;
+            font-size: 16px;
+        }
+        span.description, .info span {
+            font-family: $metaOTBook;
+            color: $fontGrey;
+        }
+    }
+    .info {}
+}

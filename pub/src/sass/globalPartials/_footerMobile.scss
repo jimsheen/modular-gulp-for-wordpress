@@ -1,0 +1,47 @@
+/**
+ *
+ * FOOTER - MOBILE VIEW
+ *
+ */
+@media (max-width: 640px) {
+
+  .main_footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 16px;
+
+    .title {
+      font-size: 22px;
+      padding-top: 40px;
+      padding-bottom: 30px;
+    }
+
+    .footer-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .copyright {
+      font-size: 13px;
+    }
+
+      /** Different widths for 5 columns design **/
+    .large-up-5 {
+
+      .links_list {
+        &.column {
+          width: 100%;
+        }
+        &.column2 {
+          width: 100%;
+          float: none;
+          padding-left: .625rem;
+          padding-right: .625rem;        }
+      }
+
+      .links_list_with_icons.column {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.kihe-blue-bar-header {
+    background: $blue2;
+    color: white;
+    margin-bottom: 70px;
+    padding: 40px 0;
+
+    .title-group {
+      h1 {
+          line-height: 1em;
+          margin-bottom: 20px;
+      }
+      span {
+          font-size: 15px;
+          color: white;
+      }
+      p {
+          color: white;
+      }
+    }
+}

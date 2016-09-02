@@ -1,0 +1,103 @@
+.one-column-feature-blocks {
+  padding: 35px 0;
+
+  @include mq(medium) {
+      padding: 50px 0;
+  }
+}
+
+.one-column-feature-block {
+  @include box-shadow(0, 2px, 4px, rgba(0, 0, 0, 0.15));
+
+  background-color: $white;
+  margin-bottom: 30px;
+  position: relative;
+
+  @include mq(medium) {
+    height: 215px;
+  }
+
+  @include mq(large) {
+    height: 235px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    display: block;
+    height: 100%;
+
+    @include mq(small) {
+      border-bottom: 3px solid #ed017b;
+      padding-bottom: 40px;
+    }
+  }
+
+  .image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: ' ';
+    height: 205px;
+    width: 100%;
+    z-index: 1;
+
+    @include mq(medium) {
+      border-left: 4px solid #ed017b;
+      float: left;
+      height: 100%;
+      width: 295px;
+    }
+
+    @include mq(large) {
+      width: 315px;
+    }
+  }
+
+  .content {
+    overflow: hidden;
+    padding: 15px 17px;
+
+    @include mq(medium) {
+      float: right;
+      padding: 20px;
+      width: calc(100% - 295px);
+    }
+
+    @include mq(large) {
+      padding: 25px;
+      width: calc(100% - 315px);
+    }
+  }
+
+  .title {
+    color: $blue1;
+    font-family: $metaOTBold;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+
+    @include mq(medium) {
+      font-size: 24px;
+    }
+  }
+
+  .summary {
+    display: none;
+    font-size: 16px;
+
+    @include mq(medium) {
+      display: block;
+    }
+  }
+
+  .arrow {
+    @include icon('after', 'kihe', 'arrow-right');
+
+    bottom: 8px;
+    color: #b0b0b0;
+    font-size: 30px;
+    position: absolute;
+    right: 20px;
+  }
+}

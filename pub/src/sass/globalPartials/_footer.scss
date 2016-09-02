@@ -1,0 +1,112 @@
+/**
+ *
+ * FOOTER
+ *
+ */
+
+.main_footer {
+  background-color: $footer_bg;
+  font-size: 18px;
+  font-family: MetaOTBook;
+  color: #ffffff;
+  padding-top: 100px;
+  padding-bottom: 115px;
+  clear: both;
+  position: relative;
+  z-index: 99996;
+
+  &:after {
+    background-image: url("../images/learning-curve.svg");
+    background-position: calc(100% - 50px) 0;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.2;
+  }
+
+  a {
+    color: $white;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0px;
+
+    li {
+      padding-bottom: 10px;
+    }
+  }
+
+  &.colleges {
+    background-color: $college_footer_bg;
+    color: $magenta;
+
+    a {
+      color: $magenta;
+    }
+
+    .copyright {
+      color: $magenta;
+
+      a {
+        color: $magenta;
+      }
+    }
+  }
+
+  .title {
+    font-size: 22px;
+    font-family: MetaOTBold;
+    font-weight: bold;
+    padding-bottom: 50px;
+  }
+
+  .footer-icon {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+  }
+  .copyright {
+    padding-top: 150px;
+    font-size: 14px;
+    font-family: MetaOTBook;
+    color: $footer_copyright_color;
+
+    a {
+      color: $footer_copyright_color;
+    }
+
+    .footer_right_side_links {
+      text-align: right;
+
+      .right_links {
+        display: inline-block;
+        padding-left: 40px;
+      }
+    }
+  }
+
+  /** Different widths for 5 columns design **/
+  .large-up-5 {
+    .links_list {
+      &.column {
+        width: 25%;
+      }
+      &.column2 {
+        width: 30%;
+        float: left;
+      }
+    }
+
+    .links_list_with_icons.column {
+      width: 20%;
+    }
+  }
+}

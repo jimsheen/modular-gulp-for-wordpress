@@ -1,0 +1,30 @@
+@import '../includes';
+@import 'partials/studyOptionsList';
+@import 'partials/blueBarHeader';
+
+
+#kihe-education-options-archive {
+    margin-bottom: 120px;
+    .kihe-banner-header {
+        margin-bottom: 120px;
+        h1 {
+            margin-bottom: 60px;
+        }
+    }
+    p {
+        @extend %merriweather;
+        font-size: 16px;
+        color: $fontDarkGrey;
+        margin-bottom: 50px;
+        &:first-child {
+            font-size: 19px;
+        }
+    }
+    article p {
+        margin-bottom: 0;
+    }
+}
+
+.kihe-arrow-right {
+    @extend %kihe-arrow-right;
+}

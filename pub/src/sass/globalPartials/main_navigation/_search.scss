@@ -1,0 +1,100 @@
+.kihe-search-toggle {
+    height: 100%;
+    width: 1px;
+    white-space: nowrap;
+    padding: 0px 20px;
+    border-left: solid 1px #eee;
+    text-align: center;
+    color: $logoPurple;
+    span {
+        font-size: 1.5em;
+    }
+    &:hover {
+        background-color: $logoPurple;
+        color: $white;
+    }
+}
+
+.kihe-search-panel-desktop {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 0%;
+    height: 100%;
+    overflow: hidden;
+    background-color: $blue3;
+    z-index: 100000;
+    @include transition(width, .2s);
+    @media screen and(max-width: $tablet) {
+        top: auto;
+        padding-top: 70px;
+    }
+    &.expanded {
+        width: 90%;
+    }
+    .kihe-search-panel-close {
+        display: block;
+        width: 100%;
+        text-align: right;
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: $faintWhite;
+            font-family: metaOTBook;
+            &:after {
+                font-family: kihe;
+                content: "\e90c";
+                float: right;
+                font-size: 2em;
+                margin-top: -7px;
+            }
+        }
+        @media screen and(max-width: $tablet) {
+            display: none;
+        }
+    }
+    .kihe-search-panel-content {
+        .kihe-search-input {
+            position: relative;
+            input[type="search"] {
+                height: auto;
+                background-color: transparent;
+                padding-bottom: 0px;
+                padding-left: 0px;
+                border: none;
+                outline: none;
+                border-bottom: solid 1px $faintWhite;
+                box-shadow: none;
+                color: rgba(255, 255, 255, .5);
+                font-family: metaOTBook;
+                font-size: 2.5em;
+                @media screen and(max-width: $tablet) {
+                    font-size: 2em;
+                }
+                @media screen and(max-width: $mobileLandscape) {
+                    font-size: 1.5em;
+                }
+            }
+            @include placeholder {
+                color: rgba(255, 255, 255, .5)
+            }
+            &:after {
+                position: absolute;
+                right: 0px;
+                bottom: 5px;
+                font-family: kihe;
+                font-size: 2.5em;
+                content: "\e928";
+                z-index: 30;
+                color: $white;
+                pointer-events: none;
+                @media screen and(max-width: $tablet) {
+                    font-size: 2em;
+                }
+                @media screen and(max-width: $mobileLandscape) {
+                    font-size: 1.5em;
+                }
+            }
+        }
+    }
+}

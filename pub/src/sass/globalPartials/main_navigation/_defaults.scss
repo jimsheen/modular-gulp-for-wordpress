@@ -1,0 +1,178 @@
+/** z-index ordering */
+
+.kihe-search-panel-desktop {
+    z-index: 100000;
+}
+
+.kihe-main-header-tablet {
+    > .is-drilldown {
+        z-index: 99999;
+    }
+}
+
+.kihe-main-header-desktop,
+.kihe-main-header-tablet {
+    z-index: 99998;
+}
+
+
+/** Fix for mobile */
+
+#wpadminbar {
+    position: fixed;
+}
+
+
+/** Table classes */
+
+.header-table {
+    display: table;
+    width: 100%;
+}
+
+.header-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.table {
+    width: 100%;
+}
+
+
+/** Extend icons */
+
+.kihe-main-header-desktop,
+.kihe-main-header-tablet {
+    .kihe-menu {
+        @extend %kihe-menu;
+    }
+    .kihe-close {
+        @extend %kihe-close;
+    }
+    .kihe-search {
+        @extend %kihe-search;
+    }
+}
+
+.kihe-arrow-right {
+    @extend %kihe-arrow-right;
+}
+
+.icon-facebook {
+    @extend %icon-facebook;
+}
+
+.icon-twitter {
+    @extend %icon-twitter;
+}
+
+.icon-instagram {
+    @extend %icon-instagram;
+}
+
+.icon-youtube {
+    @extend %icon-youtube;
+}
+
+.kihe-navigation-menu {
+    .kihe-sub-menu-container * {
+        color: $white;
+    }
+    a {
+        font-family: $metaOTBook;
+    }
+}
+
+.fixed-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.shadow-bottom {
+    @include box-shadow(0, 2px, 4px, 0, rgba(0, 0, 0, 0.15));
+}
+
+
+/** Logo container and content */
+
+.kihe-logo-container {
+    width: 280px;
+    overflow: hidden;
+}
+
+.kihe-logo-content {
+    width: 560px;
+    @include transition(margin, .3s, ease-in);
+    &.small-logo {
+        margin-left: -100%;
+    }
+}
+
+.kihe-college-name {
+    position: relative;
+    display: inline;
+    padding-left: 20px;
+    font-family: $metaOTBook;
+    &:before {
+        font-family: kihe;
+        content: "\e90a";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 20px;
+        margin-left: -10px;
+        margin-top: -17px;
+        font-size: 2.5em;
+        color: #ccc;
+    }
+}
+
+.kihe-logo {
+    &.large {
+        img {
+            width: 280px;
+        }
+        @media screen and(max-width: 479px) {
+            display: none;
+        }
+    }
+    &.small {
+        img {
+            width: 50px;
+        }
+        @media screen and(min-width: 480px) {
+            display: none;
+        }
+    }
+}
+
+.kihe-languages-menu {
+    border-left: solid 1px #eee;
+    > a,
+    span {
+        padding-right: 30px;
+        &:after {
+            position: absolute;
+            right: 5px;
+            margin-top: -9px;
+            font-family: kihe;
+            content: "\e903";
+        }
+    }
+}
+
+
+/** Styles dependant on wp navbar */
+
+.logged-in {
+    .fixed-menu {
+        @media screen and(max-width: $wpMobileMax) {
+            top: 46px;
+        }
+        @media screen and(min-width: $wpDesktopMin) {
+            top: 32px;
+        }
+    }
+}

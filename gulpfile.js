@@ -7,22 +7,22 @@ var $ = require('gulp-load-plugins')();
 // Local environment
 var jsLocal = {
     'src': 'pub/src/js/**/',
-    'compiled': 'pub/assets/js/min/',
+    'compiled': 'pub/dist/js/min/',
 };
 
 var cssLocal = {
     'src': 'pub/src/sass/',
-    'compiled': 'pub/assets/css/'
+    'compiled': 'pub/dist/css/'
 };
 
 var imgLocal = {
     'src': 'pub/src/images/**/',
-    'compiled': 'pub/assets/images/'
+    'compiled': 'pub/dist/images/'
 };
 
 var fontsLocal = {
     'src': 'pub/src/fonts/**/',
-    'compiled': 'pub/assets/css/fonts/'
+    'compiled': 'pub/dist/css/fonts/'
 };
 
 // Tasks
@@ -41,7 +41,7 @@ gulp.task('singlejs', function() {
         .pipe(gulp.dest(jsLocal.compiled));
 });
 
-// Concatenate and minify js  and copy to assets folder for production
+// Concatenate and minify js  and copy to dist folder for production
 gulp.task('jscript', function() {
     //Normal
     gulp.src([jsLocal.src + 'libs/**/*.js', jsLocal.src + 'global/*.js', jsLocal.src + 'modules/*.js', jsLocal.src + 'global.js', '!' + jsLocal.src + 'admin/**'])
@@ -53,7 +53,7 @@ gulp.task('jscript', function() {
     gulp.start('singlejs'); 
 });
 
-// Concatenate js and copy to assets folder unminified for development
+// Concatenate js and copy to dist folder unminified for development
 gulp.task('jscriptdev', function() {
     gulp.src([jsLocal.src + 'libs/**/*.js', jsLocal.src + 'global/*.js', jsLocal.src + 'modules/*.js', jsLocal.src + 'global.js', '!' + jsLocal.src + 'admin/**'])
         .pipe($.sourcemaps.init())
@@ -66,12 +66,12 @@ gulp.task('jscriptdev', function() {
     gulp.start('singlejs');
 });
 
-// Compile and minify sass and copy to assets folder for production
+// Compile and minify sass and copy to dist folder for production
 gulp.task('sass', function() {
     //Normal
     gulp.src([cssLocal.src + 'templates/*.scss', cssLocal.src + 'main.scss'])
         .pipe($.compass({
-            css: 'pub/assets/css',
+            css: 'pub/dist/css',
             sass: 'pub/src/sass'
         }))
         .pipe($.cssmin())
@@ -81,12 +81,12 @@ gulp.task('sass', function() {
         .pipe($.livereload());
 });
 
-// Compile sass and copy to assets folder unminified for development
+// Compile sass and copy to dist folder unminified for development
 gulp.task('sassdev', function() {
     //Normal
     gulp.src([cssLocal.src + 'templates/*.scss', cssLocal.src + 'main.scss'])
         .pipe($.compass({
-            css: 'pub/assets/css',
+            css: 'pub/dist/css',
             sass: 'pub/src/sass',
             sourcemap: true
         }))
@@ -95,7 +95,7 @@ gulp.task('sassdev', function() {
         .pipe($.livereload());
 });
 
-// Copy Foundation CSS and JS to assets folder
+// Copy Foundation CSS and JS to dist folder
 gulp.task('foundation', function() {
     gulp.src('pub/src/css/foundation/*.css')
         .pipe($.cssmin())
@@ -110,7 +110,7 @@ gulp.task('foundation', function() {
         .pipe(gulp.dest(jsLocal.compiled));
 });
 
-// Copy Foundation CSS and JS to assets folder
+// Copy Foundation CSS and JS to dist folder
 gulp.task('modernizr', function() {
     gulp.src('pub/src/js/libs/modernizr/*.js')
         .pipe($.rename({
@@ -119,16 +119,16 @@ gulp.task('modernizr', function() {
         .pipe(gulp.dest(jsLocal.compiled));
 });
 
-// Copy images to assets folder
+// Copy images to dist folder
 gulp.task('image', function() {
     gulp.src('pub/src/images/**')
-        .pipe(gulp.dest('pub/assets/images'));
+        .pipe(gulp.dest('pub/dist/images'));
 });
 
-// Copy fonts to assets folder
+// Copy fonts to dist folder
 gulp.task('fonts', function() {
     gulp.src('pub/src/fonts/**')
-        .pipe(gulp.dest('pub/assets/fonts'));
+        .pipe(gulp.dest('pub/dist/fonts'));
 });
 
 // Watch for sass and js changes
@@ -139,18 +139,18 @@ gulp.task('watch', function() {
         .on('error', swallowError);;
 });
 
-// Remove assets folder prior to build
+// Remove dist folder prior to build
 gulp.task('clean', function () {
-    return gulp.src('pub/assets/', {read: false})
+    return gulp.src('pub/dist/', {read: false})
     .pipe($.clean());
 });
 
-// Task to build assets for development
+// Task to build dist for development
 gulp.task('dev', function() {
     return gulp.start('modernizr', 'foundation', 'sassdev', 'jscriptdev', 'image', 'fonts', 'watch');
 });
 
-// Task to build assets for production
+// Task to build dist for production
 gulp.task('production', ['clean'], function() {
     return gulp.start('modernizr', 'foundation', 'sass', 'jscript',  'image', 'fonts');
 });

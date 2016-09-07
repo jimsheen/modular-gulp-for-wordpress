@@ -1,6 +1,5 @@
 var App = App || {};
 
-
 App.ourPeople = {
 
     init: function() {
@@ -11,26 +10,23 @@ App.ourPeople = {
         var ourPeopleMenu = $('#kihe-fixed-menu-container'),
             mainMenuHeight = 70,
             ourPeopleMenuHeight = ourPeopleMenu.outerHeight(),
-            adminBar = $('#wpadminbar'),
             banner = $('.kihe-banner-container'),
             win = $(window);
 
         if (location.hash) {
             var paddingDeduction = 0;
-                
+
             if (win.outerWidth() < 641) {
-                paddingDeduction = paddingDeduction - mainMenuHeight;
+                paddingDeduction = paddingDeduction - 46;
             }
-            if(adminBar.length <= 0) {
-                paddingDeduction = paddingDeduction + 46;
-            }
+
             // Disbale anchor jump
             setTimeout(function() {
                 window.scrollTo(0, 0);
             }, 1);
             // Set padding on body so that content starts below our people menu
             $('body').css('padding-top',
-                ourPeopleMenu.outerHeight() + mainMenuHeight + adminBar.outerHeight() + paddingDeduction + 'px'
+                ourPeopleMenu.outerHeight() + mainMenuHeight + paddingDeduction + 'px'
             );
 
         } else {
@@ -42,8 +38,8 @@ App.ourPeople = {
         }
         // Fade in grid items
         setTimeout(function() {
-            $('.our-people-grid-item').addClass('loaded');
-            $('.our-people-header').addClass('loaded');
+            $('.our-people-grid-item, .our-people-header').addClass('loaded');
+            //$('.our-people-header').addClass('loaded');
         }, 1000);
         // Fade in footer
         setTimeout(function() {
@@ -58,10 +54,12 @@ App.ourPeople = {
             imageSrc = (imageSrc === undefined) ? $(trigger).find('.image').data('src') : imageSrc,
             title = $(trigger).find('.title').html(),
             description = $(trigger).find('.description').html(),
-            longDescription = $(trigger).find('.long-description').html();
+            longDescription = $(trigger).find('.long-description').html(),
+            moreInfo = $(trigger).data('more');
 
         ourPeopleModal.find('.profile-fullname').html(title);
         ourPeopleModal.find('.profile-title').html(description);
+        ourPeopleModal.find('.profile-more').html(moreInfo);
         ourPeopleModal.find('.long-description').html(longDescription);
         ourPeopleModal.find('.kihe-profile-overlay').css('background-image', 'url(' + imageSrc + ' )');
         ourPeopleModal.find('.kihe-person-image img').attr('src', imageSrc);

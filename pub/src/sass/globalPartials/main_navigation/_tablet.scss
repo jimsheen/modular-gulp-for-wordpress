@@ -23,15 +23,6 @@
             font-size: 2em;
         }
     }
-    .kihe-search-toggle {
-        text-align: left;
-        padding: 0;
-        border-left: none;
-        &:hover {
-            background-color: transparent;
-            color: $logoPurple;
-        }
-    }
     .kihe-languages-menu {
         width: 1px;
         text-align: center;
@@ -103,128 +94,155 @@
             }
         }
     }
-    /** Top level drilldown */
-    > .is-drilldown {
-        position: absolute;
-        /** Override foundation */
-        min-height: auto !important;
-        height: calc(100vh - 70px);
-        width: 100%;
-        max-width: 1500px !important;
-        background: $white;
-        margin-left: 100%;
-        border-top: solid 1px #ccc;
+}
+
+
+/** Top level drilldown */
+
+.is-drilldown {
+    position: fixed;
+    min-height: auto !important;
+    height: 100%;
+    top: 0px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    z-index: 99997;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    /** Override foundation */
+    width: 100%;
+    max-width: 1500px !important;
+    background: $white;
+    margin-left: 100%;
+    border-top: solid 1px #ccc;
+    @include transition(margin, .2s);
+    &.expanded {
+        margin-left: 0%;
+    }
+    > ul {
         overflow: scroll;
-        @include transition(margin, .2s);
-        &.expanded {
-            margin-left: 0%;
-        }
-        > ul {
-            position: relative;
+        padding-bottom: 70px;
+        > li {
             height: auto;
-            > li {
-                border-bottom: solid 1px $grey;
-                @include mobileLandscape {
-                    height: 80px;
-                }
-                @include mobileLandscape {
-                    height: 80px;
-                }
-                a {
-                    border-bottom: solid 1px $faintWhite;
-                    height: 105px;
-                    width: 100%;
-                    color: $logoPurple;
-                    @include mobileLandscape {
-                        height: 80px;
-                    }
-                    @include mobileLandscape {
-                        height: 80px;
-                    }
-                    &:after {
-                        border: none;
-                    }
-                }
+            border-bottom: solid 1px $grey;
+            @include mobileLandscape {
+                height: 80px;
             }
-        }
-        .js-drilldown-back {
+            @include mobileLandscape {
+                height: 80px;
+            }
             a {
-                display: table;
+                border-bottom: solid 1px $faintWhite;
+                height: 105px;
                 width: 100%;
-                color: $faintWhite;
-                padding-left: 15px;
-                /** Remove foundation defaults */
-                &:before,
+                color: $logoPurple;
+                @include mobileLandscape {
+                    height: 80px;
+                }
+                @include mobileLandscape {
+                    height: 80px;
+                }
                 &:after {
-                    display: none;
-                }
-                > span {
-                    display: table-cell;
-                    vertical-align: middle;
-                }
-                .kihe-submenu-item-arrow {
-                    display: none;
+                    border: none;
                 }
             }
         }
     }
-    /* Submenu drilldown */
-    .kihe-drilldown-submenu {
-        position: fixed;
-        top: 70px;
-        height: calc(100vh - 70px);
-        width: 90%;
-        background: $logoPurple;
-        overflow: scroll;
-        .is-drilldown-submenu-item {
-            border-color: $faintWhite;
+    .js-drilldown-back {
+        a {
+            display: table;
+            width: 100%;
+            color: $faintWhite;
             padding-left: 15px;
-            a {
-                color: $white;
+            /** Remove foundation defaults */
+            &:before,
+            &:after {
+                display: none;
             }
-        }
-        .sub-menu-item-title,
-        .sub-menu-item-description {
-            display: block;
-        }
-        .sub-menu-item-description {
-            margin-top: 10px;
-            @include mobileLandscape {
+            > span {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            .kihe-submenu-item-arrow {
                 display: none;
             }
         }
-        .kihe-submenu-item-arrow {
-            color: $faintWhite;
-            @include mobileLandscape {
-                padding-right: 15px;
-            }
+    }
+}
+
+
+/* Submenu drilldown */
+
+.kihe-drilldown-submenu {
+    position: fixed;
+    top: 0px;
+    padding-top: 70px;
+    height: 100%;
+    width: 90%;
+    padding-bottom: 70px;
+    background: $logoPurple;
+    overflow: scroll;
+    .is-drilldown-submenu-item {
+        border-color: $faintWhite;
+        padding-left: 15px;
+        a {
+            color: $white;
+        }
+    }
+    .sub-menu-item-title,
+    .sub-menu-item-description {
+        display: block;
+    }
+    .sub-menu-item-description {
+        margin-top: 10px;
+        @include mobileLandscape {
+            display: none;
         }
     }
     .kihe-submenu-item-arrow {
-        padding-right: 15px;
-        text-align: right;
-        color: $grey;
-    }
-    .top-level-link {
-        display: table;
-    }
-    .is-drilldown * {
-        font-size: 26px;
-        .sub-menu-item-description {
-            font-size: 16px;
-        }
+        color: $faintWhite;
         @include mobileLandscape {
-            font-size: 22px;
+            padding-right: 15px;
         }
     }
-    .top-level-link span,
-    .is-drilldown-submenu-item span {
-        &.kihe-submenu-item-arrow {
-            span {
-                font-size: 32px;
-                @include mobileLandscape {
-                    font-size: 30px;
-                }
+    .kihe-search-toggle {
+        text-align: left;
+        padding: 0;
+        border-left: none;
+        &:hover {
+            background-color: transparent;
+            color: $logoPurple;
+        }
+    }
+}
+
+.kihe-submenu-item-arrow {
+    padding-right: 15px;
+    text-align: right;
+    color: $grey;
+}
+
+.top-level-link {
+    display: table;
+}
+
+.is-drilldown * {
+    font-size: 26px;
+    .sub-menu-item-description {
+        font-size: 16px;
+    }
+    @include mobileLandscape {
+        font-size: 22px;
+    }
+}
+
+.top-level-link span,
+.is-drilldown-submenu-item span {
+    &.kihe-submenu-item-arrow {
+        span {
+            font-size: 32px;
+            @include mobileLandscape {
+                font-size: 30px;
             }
         }
     }
@@ -242,32 +260,27 @@
 /** Styles dependant on wp navbar */
 
 .logged-in {
-    .kihe-main-header-tablet {
-        @media screen and(min-width: $wpDesktopMin) {
-            > .is-drilldown {
-                height: calc(100vh - 102px);
-
-                .is-drilldown-submenu{
-                    top: $wpDeskNavHeight;
-                    height: calc(100vh - 102px);;
+    @media screen and(min-width: $wpDesktopMin) {
+        .is-drilldown {
+            padding-top: 102px;
+            .is-drilldown-submenu {
+                padding-top: 102px;
+            }
+        }
+    }
+    @media screen and(max-width: $wpMobileMax) {
+        .kihe-languages-menu {
+            &.dropped-down {
+                .dropdown {
+                    padding-top: 116px;
                 }
             }
         }
-        @media screen and(max-width: $wpMobileMax) {
-            .kihe-languages-menu {
-                &.dropped-down {
-                    .dropdown {
-                        height: calc(100vh - 116px);
-                    }
-                }
-            }
-            > .is-drilldown {
-                height: calc(100vh - 116px);
-
-                .is-drilldown-submenu{
-                    top: $wpMobNavHeight;
-                    height: calc(100vh - 116px);
-                }
+        .is-drilldown {
+            padding-top: 116px;
+            .is-drilldown-submenu {
+                //top: $wpMobNavHeight;
+                padding-top: 116px;
             }
         }
     }

@@ -1,0 +1,42 @@
+.college-links {
+    .kihe-arrow-right {
+        @extend %kihe-arrow-right;
+    }
+    .kihe-link-external {
+        @extend %kihe-link-external;
+    }
+    .hover-swipe {
+        background: white;
+        @extend %boxShadow;
+        &:hover {
+            i {
+                color: white;
+                @include transition(color, 0.2s);
+            }
+        }
+    }
+    .image {
+        width: 30%;
+        border-left: 2px solid $red;
+        img {
+            padding: 20px;
+        }
+    }
+    .title {
+        width: 60%;
+    }
+    .icon {
+        width: 10%;
+        text-align: center;
+        padding:20px;
+        i {
+            font-size: 36px;
+            color: $grey;
+            @include transition(color, 0.2s);
+        }
+    }
+    > div {
+        margin-bottom: 20px;
+        float: left;
+    }
+}

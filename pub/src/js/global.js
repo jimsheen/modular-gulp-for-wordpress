@@ -4,7 +4,6 @@ var App = App || {};
 
 (function($) {
 
-
     // Use this variable to set up the common and page specific functions. If you
     // rename this variable, you will also need to rename the namespace below.
     var Roots = {
@@ -17,13 +16,21 @@ var App = App || {};
 
                 $(document).foundation();
 
-                /** Smooth scroll */
-                $(document).on('click', 'a', function(event){
-                    //event.preventDefault();
-
-                    $('html, body').animate({
-                        scrollTop: $( $.attr(this, 'href') ).offset().top
-                    }, 500);
+                $('a[href*="#"]:not([href="#"])').click(function() {
+                    var $this = $(this);
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html, body').animate({
+                                scrollTop: target.offset().top - 150
+                            }, 400, function() {
+                                $('.anchors-block a').removeClass('active');
+                                $this.addClass('active');
+                            });
+                            return false;
+                        }
+                    }
                 });
 
             }
@@ -98,6 +105,11 @@ var App = App || {};
         image_gallery: {
             init: function(el) {
                 App.imageGallery(el);
+            }
+        },
+        fake_twitter_blocks: {
+            init: function(el) {
+                App.fakeTwitterSlider(el);
             }
         }
     };

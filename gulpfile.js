@@ -4,26 +4,35 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
+var gulpif = require('gulp-if');
+
 // Local environment
 var jsLocal = {
     'src': 'pub/src/js/**/',
-    'compiled': 'pub/dist/js/min/',
+    'compiled': 'pub/assets/js/min/',
 };
 
 var cssLocal = {
     'src': 'pub/src/sass/',
-    'compiled': 'pub/dist/css/'
+    'compiled': 'pub/assets/css/'
 };
 
 var imgLocal = {
     'src': 'pub/src/images/**/',
-    'compiled': 'pub/dist/images/'
+    'compiled': 'pub/assets/images/'
 };
 
 var fontsLocal = {
     'src': 'pub/src/fonts/**/',
-    'compiled': 'pub/dist/css/fonts/'
+    'compiled': 'pub/assets/css/fonts/'
 };
+
+var js_config_json = require('./js_config.json');
+
+var js_config = js_config_json;
+
+
+
 
 // Tasks
 function swallowError(error) {
@@ -41,37 +50,168 @@ gulp.task('singlejs', function() {
         .pipe(gulp.dest(jsLocal.compiled));
 });
 
-// Concatenate and minify js  and copy to dist folder for production
-gulp.task('jscript', function() {
-    //Normal
-    gulp.src([jsLocal.src + 'libs/**/*.js', jsLocal.src + 'global/*.js', jsLocal.src + 'modules/*.js', jsLocal.src + 'global.js', '!' + jsLocal.src + 'admin/**'])
-        .pipe($.concat('local.min.js'))
-        .pipe($.uglify())
-        .pipe($.stripDebug())
-        .pipe(gulp.dest(jsLocal.compiled));
+// // Concatenate and minify js  and copy to assets folder for production
+// gulp.task('jscript', function() {
+//     //Normal
+//     gulp.src([jsLocal.src + 'libs/**/*.js', jsLocal.src + 'global/*.js', jsLocal.src + 'modules/*.js', jsLocal.src + 'global.js', '!' + jsLocal.src + 'admin/**'])
+//         .pipe($.concat('local.min.js'))
+//         .pipe($.uglify())
+//         .pipe($.stripDebug())
+//         .pipe(gulp.dest(jsLocal.compiled));
 
-    gulp.start('singlejs'); 
-});
+//     gulp.start('singlejs');
+// });
 
-// Concatenate js and copy to dist folder unminified for development
-gulp.task('jscriptdev', function() {
-    gulp.src([jsLocal.src + 'libs/**/*.js', jsLocal.src + 'global/*.js', jsLocal.src + 'modules/*.js', jsLocal.src + 'global.js', '!' + jsLocal.src + 'admin/**'])
+// // Concatenate js and copy to assets folder unminified for development
+// gulp.task('jscriptdev', function() {
+//     gulp.src([jsLocal.src + 'libs/**/*.js', jsLocal.src + 'global/*.js', jsLocal.src + 'modules/*.js', jsLocal.src + 'global.js', '!' + jsLocal.src + 'admin/**'])
+//         .pipe($.sourcemaps.init())
+//         .pipe($.filelog())
+//         .pipe($.concat('local.min.js'))
+//         .pipe($.sourcemaps.write())
+//         .pipe(gulp.dest(jsLocal.compiled))
+//         .pipe($.livereload());
+
+//     gulp.start('singlejs');
+// });
+
+function globalScripts(env) {
+    var isProd = (env === 'prod') ? true : false;
+    gulp.src([jsLocal.src + 'global/*.js', jsLocal.src + 'global.js'], { base: 'pub' })
         .pipe($.sourcemaps.init())
         .pipe($.filelog())
         .pipe($.concat('local.min.js'))
+        .pipe(gulpif(isProd, $.uglify()))
+        .pipe(gulpif(isProd, $.stripDebug()))
         .pipe($.sourcemaps.write())
-        .pipe(gulp.dest(jsLocal.compiled))
-        .pipe($.livereload());
+        .pipe(gulp.dest(jsLocal.compiled));
+}
 
-    gulp.start('singlejs');
+
+// function contentTypes(env, cb) {
+
+//     var isProd = (env === 'prod') ? true : false;
+//     gulp.src(jsLocal.src + 'contentTypes/**/*.js', { base: 'pub' })
+//         .pipe(gulpif(!isProd, $.sourcemaps.init()))
+//         .pipe($.concat('contentTypes.js'))
+//         .pipe(gulpif(!isProd, $.sourcemaps.write()))
+//         .pipe(gulpif(isProd, $.uglify()))
+//         .pipe(gulpif(isProd, $.stripDebug()))
+//         .pipe(gulp.dest(jsLocal.compiled));
+
+
+//         cb();
+// }
+
+
+
+function compileScript(src, env) {
+
+    // console.log('js_config');
+    // console.log(js_config); 
+
+    var deps = [];
+    deps = js_config[src].deps;
+    var isProd = (env === 'prod') ? true : false;
+
+    if (changed === false) {
+        for (var i = 0; i < deps.length; i++) {
+            if (deps[i] != 'contentTypes') {
+                deps[i] = jsLocal.src + deps[i] + '.js';
+            } else {
+                deps[i] = jsLocal.src + 'contentTypes/**/*.js';
+                console.log(deps[i]);
+            }
+        }
+    }
+
+    console.log('DEPS');
+    console.log(deps);
+
+    gulp.src(deps, { base: 'pub' })
+        .pipe(gulpif(!isProd, $.sourcemaps.init()))
+        .pipe($.concat(src + '.js'))
+        .pipe(gulpif(!isProd, $.sourcemaps.write()))
+        .pipe(gulpif(isProd, $.uglify()))
+        .pipe(gulpif(isProd, $.stripDebug()))
+        .pipe(gulp.dest(jsLocal.compiled))
+        .pipe($.filelog())
+        .pipe($.livereload())
+};
+
+
+var changed = false;
+
+var env;
+
+gulp.task('scriptCompiler', ['contentTypes'], function() {
+
+    console.log('scriptCompiler task');
+    // console.log(js_config);
+    env = 'dev';
+    globalScripts(env);
+
+    for (var src in js_config) {
+        compileScript(src, env);
+    }
+    changed = true;
+
 });
 
-// Compile and minify sass and copy to dist folder for production
+
+gulp.task('scriptCompilerProd', ['contentTypesProd'], function() {
+    env = 'prod';
+    globalScripts(env);
+    changed = false;
+    for (var src in js_config) {
+        compileScript(src, env);
+    }
+
+});
+
+
+
+gulp.task('contentTypes', function() {
+    console.log('contentTypes task');
+    env = 'dev';
+    var isProd = (env === 'prod') ? true : false;
+    gulp.src(jsLocal.src + 'contentTypes/**/*.js', { base: 'pub' })
+        .pipe(gulpif(!isProd, $.sourcemaps.init()))
+        .pipe($.concat('contentTypes.js'))
+        .pipe(gulpif(!isProd, $.sourcemaps.write()))
+        .pipe(gulpif(isProd, $.uglify()))
+        .pipe(gulpif(isProd, $.stripDebug()))
+        .pipe($.filelog())
+        .pipe(gulp.dest(jsLocal.compiled));
+
+})
+
+
+
+gulp.task('contentTypesProd', function() {
+    console.log('contentTypes task');
+    env = 'prod';
+
+    var isProd = (env === 'prod') ? true : false;
+    gulp.src(jsLocal.src + 'contentTypes/**/*.js', { base: 'pub' })
+        .pipe($.concat('contentTypes.js'))
+        .pipe($.uglify())
+        .pipe($.stripDebug())
+        .pipe($.filelog())
+        .pipe(gulp.dest(jsLocal.compiled));
+
+})
+
+
+
+
+
+// Compile and minify sass and copy to assets folder for production
 gulp.task('sass', function() {
     //Normal
     gulp.src([cssLocal.src + 'templates/*.scss', cssLocal.src + 'main.scss'])
         .pipe($.compass({
-            css: 'pub/dist/css',
+            css: 'pub/assets/css',
             sass: 'pub/src/sass'
         }))
         .pipe($.cssmin())
@@ -81,12 +221,12 @@ gulp.task('sass', function() {
         .pipe($.livereload());
 });
 
-// Compile sass and copy to dist folder unminified for development
+// Compile sass and copy to assets folder unminified for development
 gulp.task('sassdev', function() {
     //Normal
     gulp.src([cssLocal.src + 'templates/*.scss', cssLocal.src + 'main.scss'])
         .pipe($.compass({
-            css: 'pub/dist/css',
+            css: 'pub/assets/css',
             sass: 'pub/src/sass',
             sourcemap: true
         }))
@@ -95,7 +235,7 @@ gulp.task('sassdev', function() {
         .pipe($.livereload());
 });
 
-// Copy Foundation CSS and JS to dist folder
+// Copy Foundation CSS and JS to assets folder
 gulp.task('foundation', function() {
     gulp.src('pub/src/css/foundation/*.css')
         .pipe($.cssmin())
@@ -110,7 +250,7 @@ gulp.task('foundation', function() {
         .pipe(gulp.dest(jsLocal.compiled));
 });
 
-// Copy Foundation CSS and JS to dist folder
+// Copy Foundation CSS and JS to assets folder
 gulp.task('modernizr', function() {
     gulp.src('pub/src/js/libs/modernizr/*.js')
         .pipe($.rename({
@@ -119,38 +259,44 @@ gulp.task('modernizr', function() {
         .pipe(gulp.dest(jsLocal.compiled));
 });
 
-// Copy images to dist folder
+// Copy images to assets folder
 gulp.task('image', function() {
     gulp.src('pub/src/images/**')
-        .pipe(gulp.dest('pub/dist/images'));
+        .pipe(gulp.dest('pub/assets/images'));
 });
 
-// Copy fonts to dist folder
+// Copy fonts to assets folder
 gulp.task('fonts', function() {
     gulp.src('pub/src/fonts/**')
-        .pipe(gulp.dest('pub/dist/fonts'));
+        .pipe(gulp.dest('pub/assets/fonts'));
 });
 
 // Watch for sass and js changes
 gulp.task('watch', function() {
     $.livereload.listen();
-    gulp.watch(jsLocal.src + '*.js', ['jscriptdev']);
+    gulp.watch(jsLocal.src + '*.js').on('change', function(event) {
+        console.log('changed');
+        console.log('File ' + event.path + ' was ' + event.type);
+        changed = true;
+        gulp.start('scriptCompiler');
+    });
     gulp.watch(cssLocal.src + '**/*.scss', ['sassdev'])
         .on('error', swallowError);;
 });
 
-// Remove dist folder prior to build
-gulp.task('clean', function () {
-    return gulp.src('pub/dist/', {read: false})
-    .pipe($.clean());
+// Remove assets folder prior to build
+gulp.task('clean', function() {
+    return gulp.src('pub/assets/', { read: false })
+        .pipe($.clean());
 });
 
-// Task to build dist for development
+
+// Task to build assets for development
 gulp.task('dev', function() {
-    return gulp.start('modernizr', 'foundation', 'sassdev', 'jscriptdev', 'image', 'fonts', 'watch');
+    return gulp.start('modernizr', 'foundation', 'sassdev', 'scriptCompiler', 'image', 'fonts', 'watch');
 });
 
-// Task to build dist for production
-gulp.task('production', ['clean'], function() {
-    return gulp.start('modernizr', 'foundation', 'sass', 'jscript',  'image', 'fonts');
+// Task to build assets for production
+gulp.task('production', function() {
+    return gulp.start('modernizr', 'foundation', 'sass', 'scriptCompilerProd', 'image', 'fonts');
 });

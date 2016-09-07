@@ -18,14 +18,14 @@
             font-size: 2em;
         }
     }
-    .profile-title, .profile-title p {
-        color:white;
+    .profile-title,
+    .profile-title p {
+        color: white;
     }
     .kihe-our-people-modal-header {
         position: relative;
         width: 100%;
         overflow: hidden;
-        background-color: #a1c7cd;
         z-index: 1;
         @media screen and(max-width: $mobileLandscape) {
             display: inline-block;
@@ -81,12 +81,12 @@
                 height: 100%;
                 background-color: #000;
                 z-index: -1;
-                opacity: .5;
+                opacity: .7;
                 background-repeat: no-repeat;
-                background-size: auto 450%;
+                background-size: auto 500%;
                 background-position: center left;
                 color: #fff;
-                @include blur(30px);
+                @include blur(50px);
                 transform: translate3d(0, 0, 0);
             }
             span {
@@ -96,8 +96,13 @@
             .profile-fullname {
                 font-size: 2em;
             }
-            .profile-title {
+            .profile-title,
+            .profile-more {
                 font-size: 1.35em;
+            }
+            .profile-more {
+                display: inline-block;
+                margin-top: 0px;
             }
             .profile-university {
                 font-size: 1.35em;
@@ -137,6 +142,7 @@
         }
     }
 }
+
 .reveal-overlay {
     z-index: 300000;
     background: rgba(10, 10, 10, .6);

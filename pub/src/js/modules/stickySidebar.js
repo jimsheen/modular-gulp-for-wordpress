@@ -21,20 +21,4 @@ App.stickySidebar = function(el) {
             offset: 90
         })
     })
-    $('a[href*="#"]:not([href="#"])').click(function() {
-        var $this = $(this);
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html, body').animate({
-                    scrollTop: target.offset().top - 150
-                }, 400, function() {
-                    $('.anchors-block a').removeClass('active');
-                    $this.addClass('active');
-                });
-                return false;
-            }
-        }
-    });
 }

@@ -1,0 +1,62 @@
+.fake-twitter-blocks {
+    text-align: center;
+    .fake-twitter-slider {
+        background: $white;
+        padding: 35px 0px;
+        @include box-shadow(0px, 1px, 5px, 0px, #ddd);
+        .tweet-badge {
+            font-size: 35px;
+        }
+        .title,
+        .tweet-badge {
+            color: $blue2;
+        }
+        .title{
+            font-family: $metaOTMedi;
+        }
+        .title {
+        	margin-top: 0px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .summary,
+        .date {
+            color: $fontGrey;
+        }
+        .summary {
+            p {
+                font-size: 22px;
+                font-family: $metaOTMedi;
+                @include mq(small) {
+                    font-size: 17px;
+                }
+            }
+        }
+        .date {
+            font-family: $metaOTBook;
+            font-size: 14px;
+        }
+    }
+    .fake-tweet {
+        padding: 0px 15px;
+    }
+    .slick-dots {
+        margin: 0;
+        margin-top: 25px;
+        li {
+            display: inline-block;
+            padding: 0px 5px;
+            font-size: 12px;
+            button {
+                @extend %icon-circle;
+                color: $fontGrey;
+                opacity: .3;
+            }
+            &.slick-active {
+                button {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

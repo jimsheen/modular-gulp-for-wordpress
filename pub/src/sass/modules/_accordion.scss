@@ -1,0 +1,94 @@
+.accordion-section {
+  .accordion {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+    margin-bottom: 0;
+    margin-top: 80px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .accordion-title {
+    border: none;
+    color: $blue1;
+    font-family: $metaOTBold;
+    font-size: 16px;
+    padding: 16px 40px 16px 16px;
+    position: relative;
+
+    @include mq(medium) {
+      font-size: 20px;
+      padding: 22px 40px 22px 22px;
+    }
+
+    @include mq(large) {
+      padding: 24px 40px 24px 24px;
+    }
+
+    @extend %kihe-caret-down;
+
+    // Icon
+    &::before {
+      bottom: 0;
+      color: #b1b1b1;
+      font-size: 36px;
+      height: 36px;
+      margin-top: 0;
+      margin: auto;
+      right: 13px;
+      top: 0;
+      width: 36px;
+    }
+
+    // Animated bottom border
+    &::after {
+      background-color: $borderGrey;
+      bottom: 0;
+      content: ' ';
+      height: 1px;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      width: 100%;
+
+      transition: width ease-in-out 100ms;
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+  }
+
+  // Shrink bottom border on titles when active
+  .accordion-item.is-active {
+    .accordion-title {
+      @extend %kihe-caret-up;
+
+      &::after {
+        width: calc(100% - 48px);
+      }
+    }
+  }
+
+  // Remove border from last inactive accordion item
+  :last-child:not(.is-active) > .accordion-title {
+    border-bottom: none;
+  }
+
+  .accordion-content {
+    border: none;
+    border-bottom: 1px solid $borderGrey;
+    padding: 24px;
+
+    p,
+    span {
+      font-size: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+.student-life-blocks {
+    padding-top: 0px !important;
+    .intro-title,
+    .intro-summary {
+        padding: 0px 160px;
+        p {
+            &:last-of-type {
+                margin-bottom: 0px;
+            }
+        }
+    }
+    .intro-title {
+        margin-bottom: 80px;
+        h1 {
+            margin: 0;
+        }
+    }
+    .intro-summary {
+        margin-bottom: 50px;
+        p {
+            font-family: $merriweather;
+            font-size: 18px;
+        }
+    }
+    .student-life-block {
+        padding: 50px 100px;
+        .title {
+            margin-bottom: 50px;
+            font-family: $metaOTBold;
+            font-size: 22px;
+            line-height: 1;
+        }
+        .summary {
+            p {
+                font-family: $merriweather;
+                font-size: 16px;
+            }
+        }
+    }
+    .image {
+        img {
+            width: 100%;
+        }
+    }
+    .image-right {
+        .text {
+            float: left;
+        }
+        .image {
+            float: right;
+        }
+    }
+    .image-left {
+        .text {
+            float: right;
+        }
+        .image {
+            float: left;
+        }
+    }
+}
+
+@include tablet {
+    .student-life-blocks {
+        .intro-title,
+        .intro-summary {
+            padding: 0px;
+        }
+        .intro-summary {
+            margin-bottom: 30px;
+        }
+        .student-life-block {
+            padding: 40px 0px;
+            .title {
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+
+@include mobileLandscape {
+    .student-life-blocks {
+        .intro-title {
+            margin-bottom: 40px;
+            h1 {
+                font-size: 26px;
+            }
+        }
+        .student-life-block {
+            padding: 20px 0px;
+            .title {
+                margin-top: 40px;
+            }
+        }
+    }
+}

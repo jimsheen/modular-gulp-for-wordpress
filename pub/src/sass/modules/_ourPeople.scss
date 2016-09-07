@@ -9,13 +9,13 @@
         clear: both;
     }
     .columns > div {
-        position:relative;
+        position: relative;
     }
     .slider-dots {
         float: right;
         position: absolute;
         top: 30px;
-        right:0;
+        right: 0;
         ul {
             margin: 0;
         }
@@ -51,8 +51,86 @@
     .content {
         padding: 20px;
         background: white;
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+        border-color: $red;
+
+        i {
+            position:absolute;
+            color:white;
+            line-height:0;
+            right:10px;
+            top:26%;
+            font-size:36px;
+        }
     }
     .long-description {
         display: none;
     }
+
+    .kihe-arrow-right {
+        @extend %kihe-arrow-right;
+    }
+    @include mobile {
+        h1.title {
+            padding-top: 0;
+            margin-top: 30px;
+            border-bottom: 1px solid white;
+            border-top: 0;
+            padding-bottom:30px;
+        }
+        h1,
+        h2,
+        p,
+        span {
+            color: white!important;
+        }
+        > div {
+            background: $blue3;
+        }
+        .slider-container {
+            min-height: auto;
+        }
+        .slick-slider {
+            margin-bottom:20px;
+        }
+        .slider-dots {
+            top:20px;
+        }
+        article {
+            > div {
+                display: table;
+                height: 100%;
+                width: 100%;
+                box-shadow: 0 0 0;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+                border-bottom: 1px solid white;
+                &:hover {
+                    box-shadow: 0 0 0;
+                }
+                > a {
+                    display: table-cell;
+                    vertical-align: middle;
+                    height: 100%;
+                }
+            }
+        }
+        .slick-list {
+            overflow: hidden;
+        }
+        .image {
+            height: 100px;
+            width: 100px;
+            padding: 20px 0;
+            @include borderRadius(50%);
+        }
+        .content {
+            background: none;
+            width: auto;
+            border: 0;
+        }
+    }
+
+
 }

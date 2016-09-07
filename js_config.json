@@ -1,0 +1,50 @@
+{
+    "home": {
+        "deps": [
+            "libs/slick/slick",
+            "modules/ourPeople",
+            "contentTypes"
+        ]
+    },
+    "post-type-archive-ourpeople": {
+        "deps": [
+            "modules/ourPeople"
+        ]
+    },
+    "tax-cat_ourPeople": {
+        "deps": [
+            "modules/ourPeople"
+        ]
+    },
+    "post-type-archive-studyoptions": {
+        "deps": [
+            "libs/knockout/knockout",
+            "modules/studyOptions"
+        ]
+    },
+    "single-colleges": {
+        "deps": [
+            "libs/slick/slick",
+            "libs/waypoints/waypoints",
+            "modules/ourPeople",
+            "modules/stickySidebar",
+            "contentTypes"
+        ]
+    },
+    "single-universities": {
+        "deps": [
+            "libs/slick/slick",
+            "libs/waypoints/waypoints",
+            "modules/ourPeople",
+            "modules/stickySidebar",
+            "contentTypes"
+        ]
+    },
+    "post-type-archive-blog": {
+        "deps": [
+            "libs/slick/slick",
+            "modules/slider",
+            "modules/collegeSlider"
+        ]
+    }
+}

@@ -4,14 +4,17 @@ var App = App || {};
 
 App.imageGallery = function(el) {
 
+    console.log(el);
 
     var $container = $('.image-container'),
         $columnChildren = $('.image-container > div').children();
 
 
 
-    var layoutFunction = function() {
-        $el.find('.image-container').children().each(function(i) {
+    layoutFunction = function() {
+
+        // el = $('section.image-gallery');
+        el.find('.image-container').children().each(function(i) {
 
             var $childContainer = $(this);
             var $simg = $childContainer.find('.image.small'),
@@ -58,14 +61,14 @@ App.imageGallery = function(el) {
         })
     }
 
-    var mobileSetup = function() {
+    mobileSetup = function() {
         console.log($columnChildren);
         if ($container.find('.left').length != 0) {
             $columnChildren.unwrap();
         }
     }
 
-    var sliderSetup = function() {
+    sliderSetup = function() {
         console.log(sliderSetup);
         $container.addClass('mobile-slider');
         el.find('.image-container').slick({
@@ -78,7 +81,7 @@ App.imageGallery = function(el) {
         })
     }
 
-    var destroySlider = function() {
+    destroySlider = function(el) {
         if ($container.hasClass('mobile-slider')) {
             $container.removeClass('mobile-slider');
             el.find('.image-container').slick('unslick');
@@ -94,13 +97,15 @@ App.imageGallery = function(el) {
 
         var ww = $(window).width();
 
+        console.log(el);
+
         if (ww >= 640) {
-            destroySlider();
+            destroySlider(el);
             layoutFunction();
 
         } else {
-            mobileSetup();
-            sliderSetup();
+            mobileSetup(el);
+            sliderSetup(el);
         }
     })
 

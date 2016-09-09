@@ -1,18 +1,21 @@
 {
     "home": {
         "deps": [
+            "libs/stackblur/StackBlur",
             "libs/slick/slick",
             "modules/ourPeople",
-            "contentTypes"
+            "contentTypes/**/*"
         ]
     },
     "post-type-archive-ourpeople": {
         "deps": [
+        "libs/stackblur/StackBlur",
             "modules/ourPeople"
         ]
     },
     "tax-cat_ourPeople": {
         "deps": [
+            "libs/stackblur/StackBlur",
             "modules/ourPeople"
         ]
     },
@@ -28,7 +31,7 @@
             "libs/waypoints/waypoints",
             "modules/ourPeople",
             "modules/stickySidebar",
-            "contentTypes"
+            "contentTypes/**/*"
         ]
     },
     "single-universities": {
@@ -37,7 +40,7 @@
             "libs/waypoints/waypoints",
             "modules/ourPeople",
             "modules/stickySidebar",
-            "contentTypes"
+            "contentTypes/**/*"
         ]
     },
     "post-type-archive-blog": {

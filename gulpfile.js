@@ -27,14 +27,15 @@ var fontsLocal = {
     'compiled': 'pub/assets/css/fonts/'
 };
 
-var js_config_json = require('./js_config.json');
+var js_config = require('./js_config.json');
 
-var js_config = js_config_json;
+// default watch var
+var changed = false;
+
+// global environment var
+var env;
 
 
-
-
-// Tasks
 function swallowError(error) {
 
     // If you want details of the error in the console
@@ -50,32 +51,8 @@ gulp.task('singlejs', function() {
         .pipe(gulp.dest(jsLocal.compiled));
 });
 
-// // Concatenate and minify js  and copy to assets folder for production
-// gulp.task('jscript', function() {
-//     //Normal
-//     gulp.src([jsLocal.src + 'libs/**/*.js', jsLocal.src + 'global/*.js', jsLocal.src + 'modules/*.js', jsLocal.src + 'global.js', '!' + jsLocal.src + 'admin/**'])
-//         .pipe($.concat('local.min.js'))
-//         .pipe($.uglify())
-//         .pipe($.stripDebug())
-//         .pipe(gulp.dest(jsLocal.compiled));
-
-//     gulp.start('singlejs');
-// });
-
-// // Concatenate js and copy to assets folder unminified for development
-// gulp.task('jscriptdev', function() {
-//     gulp.src([jsLocal.src + 'libs/**/*.js', jsLocal.src + 'global/*.js', jsLocal.src + 'modules/*.js', jsLocal.src + 'global.js', '!' + jsLocal.src + 'admin/**'])
-//         .pipe($.sourcemaps.init())
-//         .pipe($.filelog())
-//         .pipe($.concat('local.min.js'))
-//         .pipe($.sourcemaps.write())
-//         .pipe(gulp.dest(jsLocal.compiled))
-//         .pipe($.livereload());
-
-//     gulp.start('singlejs');
-// });
-
-function globalScripts(env) {
+// Bundle all scripts in the global folder
+function globalScripts() {
     var isProd = (env === 'prod') ? true : false;
     gulp.src([jsLocal.src + 'global/*.js', jsLocal.src + 'global.js'], { base: 'pub' })
         .pipe($.sourcemaps.init())
@@ -88,46 +65,25 @@ function globalScripts(env) {
 }
 
 
-// function contentTypes(env, cb) {
-
-//     var isProd = (env === 'prod') ? true : false;
-//     gulp.src(jsLocal.src + 'contentTypes/**/*.js', { base: 'pub' })
-//         .pipe(gulpif(!isProd, $.sourcemaps.init()))
-//         .pipe($.concat('contentTypes.js'))
-//         .pipe(gulpif(!isProd, $.sourcemaps.write()))
-//         .pipe(gulpif(isProd, $.uglify()))
-//         .pipe(gulpif(isProd, $.stripDebug()))
-//         .pipe(gulp.dest(jsLocal.compiled));
-
-
-//         cb();
-// }
-
-
-
-function compileScript(src, env) {
-
-    // console.log('js_config');
-    // console.log(js_config); 
-
+// loop through dependencies from js_config and append jsLocal.src path and .js
+// run gulp tasks on newly created deps[] array
+function compileScript(src) {
     var deps = [];
     deps = js_config[src].deps;
+
+    // global environment variable env defined in dev/production tasks
     var isProd = (env === 'prod') ? true : false;
 
+    // if function fired by watch task do not append jsLocal.src again
     if (changed === false) {
         for (var i = 0; i < deps.length; i++) {
-            if (deps[i] != 'contentTypes') {
-                deps[i] = jsLocal.src + deps[i] + '.js';
-            } else {
-                deps[i] = jsLocal.src + 'contentTypes/**/*.js';
-                console.log(deps[i]);
-            }
+            deps[i] = jsLocal.src + deps[i] + '.js';
         }
     }
-
     console.log('DEPS');
     console.log(deps);
-
+    // deps array of newly created path strings
+    // conditional gulpif statements depending on env variable
     gulp.src(deps, { base: 'pub' })
         .pipe(gulpif(!isProd, $.sourcemaps.init()))
         .pipe($.concat(src + '.js'))
@@ -139,71 +95,16 @@ function compileScript(src, env) {
         .pipe($.livereload())
 };
 
-
-var changed = false;
-
-var env;
-
-gulp.task('scriptCompiler', ['contentTypes'], function() {
-
-    console.log('scriptCompiler task');
-    // console.log(js_config);
-    env = 'dev';
-    globalScripts(env);
-
+// Run globalScripts() to bundle global scripts
+// Loop through js_config and run the compileScript() function
+gulp.task('scriptCompiler', function() {
+    globalScripts();
     for (var src in js_config) {
-        compileScript(src, env);
+        compileScript(src);
     }
+    // reset changed variable for watch task - fixes globbing error
     changed = true;
-
 });
-
-
-gulp.task('scriptCompilerProd', ['contentTypesProd'], function() {
-    env = 'prod';
-    globalScripts(env);
-    changed = false;
-    for (var src in js_config) {
-        compileScript(src, env);
-    }
-
-});
-
-
-
-gulp.task('contentTypes', function() {
-    console.log('contentTypes task');
-    env = 'dev';
-    var isProd = (env === 'prod') ? true : false;
-    gulp.src(jsLocal.src + 'contentTypes/**/*.js', { base: 'pub' })
-        .pipe(gulpif(!isProd, $.sourcemaps.init()))
-        .pipe($.concat('contentTypes.js'))
-        .pipe(gulpif(!isProd, $.sourcemaps.write()))
-        .pipe(gulpif(isProd, $.uglify()))
-        .pipe(gulpif(isProd, $.stripDebug()))
-        .pipe($.filelog())
-        .pipe(gulp.dest(jsLocal.compiled));
-
-})
-
-
-
-gulp.task('contentTypesProd', function() {
-    console.log('contentTypes task');
-    env = 'prod';
-
-    var isProd = (env === 'prod') ? true : false;
-    gulp.src(jsLocal.src + 'contentTypes/**/*.js', { base: 'pub' })
-        .pipe($.concat('contentTypes.js'))
-        .pipe($.uglify())
-        .pipe($.stripDebug())
-        .pipe($.filelog())
-        .pipe(gulp.dest(jsLocal.compiled));
-
-})
-
-
-
 
 
 // Compile and minify sass and copy to assets folder for production
@@ -275,8 +176,6 @@ gulp.task('fonts', function() {
 gulp.task('watch', function() {
     $.livereload.listen();
     gulp.watch(jsLocal.src + '*.js').on('change', function(event) {
-        console.log('changed');
-        console.log('File ' + event.path + ' was ' + event.type);
         changed = true;
         gulp.start('scriptCompiler');
     });
@@ -293,10 +192,12 @@ gulp.task('clean', function() {
 
 // Task to build assets for development
 gulp.task('dev', function() {
+    env = 'dev';
     return gulp.start('modernizr', 'foundation', 'sassdev', 'scriptCompiler', 'image', 'fonts', 'watch');
 });
 
 // Task to build assets for production
-gulp.task('production', function() {
-    return gulp.start('modernizr', 'foundation', 'sass', 'scriptCompilerProd', 'image', 'fonts');
+gulp.task('production', ['clean'], function() {
+    env = 'prod';
+    return gulp.start('modernizr', 'foundation', 'sass', 'scriptCompiler', 'image', 'fonts');
 });
